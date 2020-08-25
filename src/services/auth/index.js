@@ -5,6 +5,14 @@ class AuthService {
     return axiosInstance.post('/authentication/login', request);
   }
 
+  static async updateLocale(request) {
+    return axiosInstance.put('/authentication/locale', request);
+  }
+
+  static async updateUserDetails(request) {
+    return axiosInstance.put('/authentication/details', request);
+  }
+
   static async registerIndividual(request) {
     return axiosInstance.post('/authentication/register', request);
   }

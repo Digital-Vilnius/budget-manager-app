@@ -10,7 +10,7 @@ import { ScreenContainer } from 'components';
 import PropTypes from 'prop-types';
 import { NAVIGATORS, SCREENS } from 'constants';
 import { connect } from 'react-redux';
-import { auth as actions, accounts as accountsActions } from 'actions';
+import { accounts as accountsActions, auth as actions } from 'actions';
 import { LoginForm } from 'containers';
 
 function LoginScreen(props) {

@@ -9,7 +9,7 @@ import { ViewPropTypes } from 'react-native';
 import CategorySelect from '../CategorySelect';
 import { BUTTONS, Grid } from 'styles';
 import TagSelect from '../TagSelect';
-import UserSelect from "containers/UserSelect";
+import UserSelect from '../UserSelect';
 
 class TransactionForm extends Form {
   constructor(props) {

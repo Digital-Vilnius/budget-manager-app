@@ -22,12 +22,12 @@ const DRAWER_HEADER_OPTIONS = ({ navigation }) => {
       borderBottomWidth: 1,
       backgroundColor: COLORS.PRIMARY,
     },
-    headerLeft: ({ onPress, canGoBack }) => {
+    headerLeft: ({ goBack, canGoBack }) => {
       return (
         <Grid.Row>
           {canGoBack && (
             <Grid.Col mr={10}>
-              <IconButton disabled icon="arrow-round-back" />
+              <IconButton onPress={goBack} icon="arrow-round-back" />
             </Grid.Col>
           )}
           {!canGoBack && (

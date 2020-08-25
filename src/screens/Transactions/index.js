@@ -23,11 +23,11 @@ function TransactionsScreen(props) {
   const { selectedAccount, navigation, isLoading, addTransaction } = props;
   const [addVisible, setAddVisible] = useState(false);
   const [filterVisible, setFilterVisible] = useState(false);
-  const [filter, setFilter] = useState({
-    accountId: selectedAccount.id,
-  });
+  const [filter, setFilter] = useState({});
+  const [keyword, setKeyword] = useState(null);
 
   useEffect(() => {
+    const filtersCount = Object.keys(filter).filter(key => filter[key]).length;
     navigation.setOptions({
       headerRight: () => (
         <Grid.Row>
@@ -36,6 +36,7 @@ function TransactionsScreen(props) {
               onPress={() => setFilterVisible(true)}
               iconSize={24}
               icon="options"
+              badgeCount={filtersCount}
             />
           </Grid.Col>
           <Grid.Col ml={10}>
@@ -48,17 +49,22 @@ function TransactionsScreen(props) {
         </Grid.Row>
       ),
     });
-  }, [navigation]);
+  }, [filter, navigation]);
 
-  useEffect(() => {
-    setFilter({ accountId: selectedAccount.id });
-  }, [selectedAccount]);
-
-  const search = ({ value }) => {
-    setFilter({ ...filter, keyword: value });
+  const onSearch = ({ value }) => {
+    setKeyword(value);
   };
 
-  const onSearchChange = _.debounce(search, 500);
+  const onFilter = formData => {
+    setFilterVisible(false);
+    setFilter(formData);
+  };
+
+  const onQuickFilter = formData => {
+    setFilter({ ...filter, ...formData });
+  };
+
+  const onSearchChange = _.debounce(onSearch, 500);
 
   const add = data => {
     addTransaction(data, () => {
@@ -76,9 +82,15 @@ function TransactionsScreen(props) {
           onChange={onSearchChange}
           name="keyword"
         />
-        <QuickFilters />
+        <QuickFilters filter={filter} onChange={onQuickFilter} />
       </Header>
-      <Transactions filter={filter} />
+      <Transactions
+        filter={{
+          accountId: selectedAccount.id,
+          keyword,
+          ...filter,
+        }}
+      />
       <Modal
         title="Add transaction"
         visible={addVisible}
@@ -94,9 +106,10 @@ function TransactionsScreen(props) {
         visible={filterVisible}
         onClose={() => setFilterVisible(false)}>
         <TransactionsFilterForm
+          formData={filter}
           onCancel={() => setFilterVisible(false)}
           isLoading={isLoading}
-          onSubmit={() => {}}
+          onSubmit={onFilter}
         />
       </Modal>
     </ScreenContainer>

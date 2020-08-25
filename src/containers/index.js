@@ -14,6 +14,8 @@ import TagForm from './TagForm';
 import TagSelect from './TagSelect';
 import TransactionsFilterForm from './TransactionsFilterForm';
 import UserSelect from './UserSelect';
+import DrawerContent from './DrawerContent';
+import UserDetailsForm from './UserDetailsForm';
 
 export {
   Transactions,
@@ -32,4 +34,6 @@ export {
   TagSelect,
   TransactionsFilterForm,
   UserSelect,
+  DrawerContent,
+  UserDetailsForm,
 };

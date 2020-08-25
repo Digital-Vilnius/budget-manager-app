@@ -8,10 +8,6 @@ const Container = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-between;
   padding: 15px;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  border-bottom-color: ${COLORS.LIGHT_GREY};
-  border-top-color: ${COLORS.LIGHT_GREY};
 `;
 
 const LeftContainer = styled.View`

@@ -25,7 +25,7 @@ function AccountSelect(props) {
       style={style}>
       <ValueContainer>
         <Value>{selectedAccount?.title}</Value>
-        <Icon size={18} color={COLORS.GREY} name="arrow-down" />
+        <Icon disabled size={18} color={COLORS.GREY} name="arrow-down" />
       </ValueContainer>
       <Modal
         onClose={() => setVisible(false)}

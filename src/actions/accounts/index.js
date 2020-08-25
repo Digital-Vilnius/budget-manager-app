@@ -8,7 +8,7 @@ export function getAccounts(callback = null) {
       const { result, count } = await AccountsService.getAccounts();
       dispatch({
         type: GET_ACCOUNTS,
-        payload: { accounts: result, count, selectedAccount: result[0] },
+        payload: { accounts: result, count, selectedAccount: result[1] },
       });
       if (callback) {
         callback();

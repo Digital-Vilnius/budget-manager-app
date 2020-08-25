@@ -10,12 +10,8 @@ const Content = styled.ScrollView``;
 
 const Header = styled.View`
   background-color: ${COLORS.PRIMARY};
-  padding: 15px 0;
+  padding: 30px 0;
   width: 100%;
-`;
-
-const Section = styled.View`
-  margin-bottom: 40px;
 `;
 
 const HeaderTitle = styled(Typography.BoldText)`
@@ -28,4 +24,4 @@ const HeaderSubtitle = styled(Typography.MediumText)`
   font-size: 14px;
 `;
 
-export { Container, Header, Content, HeaderTitle, HeaderSubtitle, Section };
+export { Container, Header, Content, HeaderTitle, HeaderSubtitle };

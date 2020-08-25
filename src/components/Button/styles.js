@@ -12,7 +12,7 @@ const getBackgroundColor = ({ type, disabled, outline }) => {
 
   switch (type) {
     case BUTTONS.SECONDARY: {
-      color = COLORS.SECONDARY;
+      color = COLORS.GREY;
       break;
     }
 
@@ -39,6 +39,14 @@ const getTextColor = ({ type, outline }) => {
       return COLORS.PRIMARY;
     }
   }
+};
+
+const getBorderColor = ({ type, outline, disabled }) => {
+  if (!outline) {
+    return getBackgroundColor({ type, outline, disabled });
+  }
+
+  return hexToRgba(getTextColor({ type, outline }), 0.3);
 };
 
 const Container = styled.TouchableOpacity`

@@ -4,7 +4,7 @@ import { store } from 'store';
 import { auth as actions } from 'actions';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://5a1a33e156df.ngrok.io/api',
+  baseURL: 'https://125cb48333fe.ngrok.io/api',
 });
 
 axiosInstance.interceptors.request.use(

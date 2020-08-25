@@ -11,6 +11,7 @@ const DEFAULT_COLORS = {
   LIGHT_GREY_2: '#F8FAFB',
   LIGHT_GREY_3: '#ecf1f4',
   WHITE: '#FFFFFF',
+  RED: 'red',
 };
 
 const COLORS = {

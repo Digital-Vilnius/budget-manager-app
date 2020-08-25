@@ -10,6 +10,12 @@ import {
   REGISTER_INDIVIDUAL,
   REGISTER_INDIVIDUAL_ERROR,
   REGISTER_INDIVIDUAL_START,
+  UPDATE_LOCALE,
+  UPDATE_LOCALE_ERROR,
+  UPDATE_LOCALE_START,
+  UPDATE_USER_DETAILS,
+  UPDATE_USER_DETAILS_ERROR,
+  UPDATE_USER_DETAILS_START,
 } from './types';
 import { NAVIGATORS } from 'constants';
 
@@ -21,6 +27,34 @@ export function logout() {
   };
 }
 
+export function updateLocale(request, callback) {
+  return async dispatch => {
+    try {
+      dispatch({ type: UPDATE_LOCALE_START });
+      await AuthService.updateLocale(request);
+      dispatch({ type: UPDATE_LOCALE });
+      callback();
+    } catch (exception) {
+      FlashMessagesService.showGenericError();
+      dispatch({ type: UPDATE_LOCALE_ERROR });
+    }
+  };
+}
+
+export function updateUserDetails(request, callback) {
+  return async dispatch => {
+    try {
+      dispatch({ type: UPDATE_USER_DETAILS_START });
+      await AuthService.updateUserDetails(request);
+      dispatch({ type: UPDATE_USER_DETAILS });
+      callback();
+    } catch (exception) {
+      FlashMessagesService.showGenericError();
+      dispatch({ type: UPDATE_USER_DETAILS_ERROR });
+    }
+  };
+}
+
 export function login(request, callback) {
   return async dispatch => {
     try {
@@ -29,6 +63,7 @@ export function login(request, callback) {
       dispatch({ type: LOGIN, payload: result });
       callback();
     } catch (exception) {
+      console.log(exception);
       FlashMessagesService.showGenericError();
       dispatch({ type: LOGIN_ERROR });
     }

@@ -24,6 +24,8 @@ import QuickFilters from './QuickFilters';
 import TagsItem from './TagsItem';
 import Badge from './Badge';
 import DatePicker from './DatePicker';
+import Checkbox from './Checkbox';
+import List from './List';
 
 export {
   Button,
@@ -52,4 +54,6 @@ export {
   TagsItem,
   Badge,
   DatePicker,
+  Checkbox,
+  List,
 };

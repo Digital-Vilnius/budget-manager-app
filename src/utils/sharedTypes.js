@@ -45,6 +45,12 @@ const TagsFilter = PropTypes.shape({
 const TransactionsFilter = PropTypes.shape({
   accountId: PropTypes.number.isRequired,
   keyword: PropTypes.string,
+  amountFrom: PropTypes.number,
+  amountTo: PropTypes.number,
+  dateFrom: PropTypes.string,
+  dateTo: PropTypes.string,
+  categoriesIds: PropTypes.arrayOf(PropTypes.number),
+  tagsIds: PropTypes.arrayOf(PropTypes.number),
 });
 
 const UsersFilter = PropTypes.shape({

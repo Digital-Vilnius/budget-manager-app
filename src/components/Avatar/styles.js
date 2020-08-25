@@ -17,7 +17,7 @@ const Placeholder = styled.View`
 `;
 
 const PlaceholderText = styled(Typography.BoldText)`
-  font-size: 15px;
+  font-size: ${props => props.size / 3}px;
   padding-left: 2px;
   color: ${COLORS.WHITE};
   text-transform: uppercase;

@@ -18,22 +18,21 @@ import Badge from '../Badge';
 
 function TransactionsItem(props) {
   const { transaction, style } = props;
-  const { category, description, amount, date, tag, spentBy } = transaction;
-  const { fullName } = spentBy;
-  const names = fullName.split(' ');
+  const { category, description, amount, tag } = transaction;
+  const { title } = category;
 
   return (
     <Container style={style}>
       <Header>
         <LeftSection>
-          <Avatar placeholder={`${names[0][0]}${names[1][0]}`} size={40} />
+          <Avatar placeholder={title.substring(0, 2)} size={40} />
           <Details>
-            <Title>{fullName}</Title>
-            <Date>{tag?.title || date}</Date>
+            <Title>{title}</Title>
+            <Date>{category.title}</Date>
           </Details>
         </LeftSection>
         <RightSection>
-          <Badge text={category.title} />
+          <Badge text={tag?.title || 'Other'} />
         </RightSection>
       </Header>
       <Content>

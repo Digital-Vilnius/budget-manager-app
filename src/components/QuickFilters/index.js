@@ -6,22 +6,28 @@ import { ViewPropTypes } from 'react-native';
 import { SharedTypes } from 'utils';
 import QuickFilter from '../QuickFilter';
 
+const currentDate = new Date().toISOString().split('T')[0];
+
 const QUICK_FILTERS = [
   {
     key: 'all',
     label: 'All',
+    value: {},
   },
   {
     key: 'expenses',
     label: 'Expenses',
+    value: { amountTo: 0 },
   },
   {
     key: 'incomes',
     label: 'Incomes',
+    value: { amountFrom: 0 },
   },
   {
     key: 'today',
     label: 'Today',
+    value: { dateFrom: currentDate, dateTo: currentDate },
   },
   {
     key: 'thisMonth',
@@ -30,17 +36,20 @@ const QUICK_FILTERS = [
 ];
 
 function QuickFilters(props) {
-  const { style, filters } = props;
+  const { style, filter, onChange } = props;
 
   return (
     <Container style={style}>
       <Content showsHorizontalScrollIndicator={false} horizontal>
-        {QUICK_FILTERS.map((filter, index) => (
+        {QUICK_FILTERS.map((quickFilter, index) => (
           <Grid.Col
-            key={filter.key}
+            key={quickFilter.key}
             ml={index === 0 ? 10 : 0}
-            mr={index === filters.length - 1 ? 10 : 5}>
-            <QuickFilter filter={filter} />
+            mr={index === QUICK_FILTERS.length - 1 ? 10 : 5}>
+            <QuickFilter
+              onPress={() => onChange({ ...filter, ...quickFilter.value })}
+              filter={quickFilter}
+            />
           </Grid.Col>
         ))}
       </Content>
@@ -51,7 +60,7 @@ function QuickFilters(props) {
 QuickFilters.propTypes = {
   onChange: PropTypes.func,
   style: ViewPropTypes.style,
-  filters: PropTypes.arrayOf(SharedTypes.QuickFilter),
+  filter: SharedTypes.TransactionsFilter.isRequired,
 };
 
 QuickFilters.defaultProps = {

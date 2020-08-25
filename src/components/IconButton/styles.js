@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS } from 'styles';
+import { COLORS, Typography } from 'styles';
 import hexToRgba from 'hex-to-rgba';
 
 const Container = styled.TouchableOpacity`
@@ -11,4 +11,23 @@ const Container = styled.TouchableOpacity`
   background-color: ${hexToRgba(COLORS.BLACK, 0.3)};
 `;
 
-export { Container };
+const BadgeCountContainer = styled.View`
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: ${COLORS.RED};
+`;
+
+const BadgeCount = styled(Typography.BoldText)`
+  color: ${COLORS.WHITE};
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+`;
+
+export { Container, BadgeCount, BadgeCountContainer };

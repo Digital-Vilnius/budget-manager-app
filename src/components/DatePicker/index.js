@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ViewPropTypes } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import * as PropTypes from 'prop-types';
-import _ from 'lodash';
 import { Form } from 'styles';
 
 function DatePicker(props) {
@@ -61,7 +60,7 @@ DatePicker.defaultProps = {
   placeholder: null,
   label: null,
   disabled: false,
-  onBlur: _.noop,
+  onBlur: () => {},
 };
 
 export default DatePicker;

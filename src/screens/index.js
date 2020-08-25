@@ -9,6 +9,7 @@ import UsersScreen from './Users';
 import NotificationsSettingsScreen from './NotificationsSettings';
 import LanguageSettingsScreen from './LanguageSettings';
 import TagsScreen from './Tags';
+import EditUserDetailsScreen from './EditUserDetails';
 
 export {
   TransactionsScreen,
@@ -22,4 +23,5 @@ export {
   NotificationsSettingsScreen,
   LanguageSettingsScreen,
   TagsScreen,
+  EditUserDetailsScreen,
 };

@@ -5,10 +5,10 @@ import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
 
 function QuickFilter(props) {
-  const { style, filter } = props;
+  const { style, filter, onPress } = props;
   const { label } = filter;
   return (
-    <Container style={style}>
+    <Container onPress={onPress} style={style}>
       <Label>{label}</Label>
     </Container>
   );

@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { SCREENS } from 'constants';
 import {
+  EditUserDetailsScreen,
   LanguageSettingsScreen,
   NotificationsSettingsScreen,
   SettingsScreen,
@@ -21,6 +22,11 @@ function SettingsNavigator() {
         options={{ title: 'Settings' }}
         name={SCREENS.SETTINGS}
         component={SettingsScreen}
+      />
+      <SettingsStack.Screen
+        options={{ title: 'Edit user details' }}
+        name={SCREENS.EDIT_USER_DETAILS}
+        component={EditUserDetailsScreen}
       />
       <SettingsStack.Screen
         options={{ title: 'Notifications' }}

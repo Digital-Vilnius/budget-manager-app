@@ -6,9 +6,9 @@ import { Container, Content, Footer } from './styles';
 import update from 'immutability-helper';
 import * as PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';
-import CategorySelect from '../CategorySelect';
 import { BUTTONS, Grid } from 'styles';
-import TagSelect from '../TagSelect';
+import _ from 'lodash';
+import CategorySelect from 'containers/CategorySelect';
 
 class TransactionsFilterForm extends Form {
   constructor(props) {
@@ -20,6 +20,7 @@ class TransactionsFilterForm extends Form {
         amountTo: { value: null, error: null, dirty: false },
         dateFrom: { value: null, error: null, dirty: false },
         dateTo: { value: null, error: null, dirty: false },
+        categoriesIds: { value: [], error: null, dirty: false },
       },
     };
 
@@ -31,7 +32,14 @@ class TransactionsFilterForm extends Form {
     formData ? this.setForm(formData) : this.validateForm();
   }
 
-  setForm({ amountFrom, amountTo, dateFrom, dateTo }) {
+  componentDidUpdate(prevProps) {
+    const { formData } = this.props;
+    if (!_.isEqual(formData, prevProps.formData)) {
+      this.setForm(formData);
+    }
+  }
+
+  setForm({ amountFrom, amountTo, dateFrom, dateTo, categoriesIds }) {
     this.setState(
       state =>
         update(state, {
@@ -40,6 +48,7 @@ class TransactionsFilterForm extends Form {
             amountTo: { value: { $set: amountTo } },
             dateFrom: { value: { $set: dateFrom } },
             dateTo: { value: { $set: dateTo } },
+            categoriesIds: { value: { $set: categoriesIds } },
           },
         }),
       () => this.validateForm(),
@@ -52,17 +61,23 @@ class TransactionsFilterForm extends Form {
 
     if (this.validateForm()) {
       onSubmit({
-        amountFrom: Number(fields.amountFrom.value),
-        amountTo: Number(fields.amountTo.value),
-        dateFrom: fields.dateFrom.value,
-        dateTo: fields.dateTo.value,
+        amountFrom: Number(fields.amountFrom.value) || null,
+        amountTo: Number(fields.amountTo.value) || null,
+        dateFrom: fields.dateFrom.value || null,
+        dateTo: fields.dateTo.value || null,
+        categoriesIds: fields.categoriesIds.value || null,
       });
     }
   }
 
+  reset() {
+    const { onSubmit } = this.props;
+    onSubmit({});
+  }
+
   render() {
     const { fields } = this.state;
-    const { style, isLoading, onCancel } = this.props;
+    const { style, isLoading } = this.props;
 
     return (
       <Container style={style}>
@@ -95,6 +110,14 @@ class TransactionsFilterForm extends Form {
             label="Date to"
             name="dateTo"
           />
+          <CategorySelect
+            multiple
+            value={fields.categoriesIds.value}
+            onChange={this.handleChange}
+            placeholder="Select categories"
+            label="Categories"
+            name="categoriesIds"
+          />
         </Content>
         <Footer>
           <Grid.Row mb={10}>
@@ -109,8 +132,8 @@ class TransactionsFilterForm extends Form {
             <Button
               type={BUTTONS.SECONDARY}
               outline
-              title="Cancel"
-              onPress={onCancel}
+              title="Reset"
+              onPress={this.reset}
             />
           </Grid.Row>
         </Footer>
@@ -123,10 +146,10 @@ TransactionsFilterForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   style: ViewPropTypes.style,
   formData: PropTypes.shape({
-    amountFrom: PropTypes.number.isRequired,
-    amountTo: PropTypes.number.isRequired,
-    dateFrom: PropTypes.string.isRequired,
-    dateTo: PropTypes.string.isRequired,
+    amountFrom: PropTypes.number,
+    amountTo: PropTypes.number,
+    dateFrom: PropTypes.string,
+    dateTo: PropTypes.string,
   }),
   isLoading: PropTypes.bool,
   onCancel: PropTypes.func,

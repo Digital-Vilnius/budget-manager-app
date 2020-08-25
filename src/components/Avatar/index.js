@@ -10,7 +10,7 @@ export default function Avatar(props) {
       {!!source && <Image source={{ uri: source }} />}
       {!!placeholder && (
         <Placeholder size={size}>
-          <PlaceholderText>{placeholder}</PlaceholderText>
+          <PlaceholderText size={size}>{placeholder}</PlaceholderText>
         </Placeholder>
       )}
     </Container>

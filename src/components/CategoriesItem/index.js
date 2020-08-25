@@ -12,9 +12,10 @@ import { ViewPropTypes } from 'react-native';
 import { SharedTypes } from 'utils';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
+import Checkbox from '../Checkbox';
 
 function CategoriesItem(props) {
-  const { category, style, onPress, onLongPress } = props;
+  const { category, style, onPress, onLongPress, option, checked } = props;
   const { description, title, total } = category;
 
   return (
@@ -27,7 +28,8 @@ function CategoriesItem(props) {
         </Details>
       </LeftSection>
       <RightSection>
-        <AmountText>{`${total.toFixed(2)} €`}</AmountText>
+        {option && <Checkbox disabled checked={checked} />}
+        {!option && <AmountText>{`${total.toFixed(2)} €`}</AmountText>}
       </RightSection>
     </Container>
   );
@@ -35,6 +37,8 @@ function CategoriesItem(props) {
 
 CategoriesItem.propTypes = {
   category: SharedTypes.CategoryType.isRequired,
+  option: PropTypes.bool,
+  checked: PropTypes.bool,
   style: ViewPropTypes.style,
   onPress: PropTypes.func,
   onLongPress: PropTypes.func,
@@ -42,6 +46,8 @@ CategoriesItem.propTypes = {
 
 CategoriesItem.defaultProps = {
   style: {},
+  checked: false,
+  option: false,
   onPress: () => {},
   onLongPress: () => {},
 };

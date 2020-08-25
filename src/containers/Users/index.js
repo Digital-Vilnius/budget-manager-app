@@ -87,16 +87,14 @@ class Users extends React.Component {
           showsVerticalScrollIndicator={false}
           refreshing={isRefreshing}
           onRefresh={this.refresh}
-          sections={Mapper.transformArrayToSections(users)}
+          data={users}
+          ListHeaderComponent={() => <Separator />} 
           ItemSeparatorComponent={() => <Separator />}
           ListFooterComponent={() => <Footer />}
           onEndReached={this.load}
           onEndReachedThreshold={0}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => this.renderItem(item)}
-          renderSectionHeader={({ section: { title } }) => (
-            <SectionHeader title={title} />
-          )}
         />
       </Container>
     );

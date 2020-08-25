@@ -7,16 +7,23 @@ import TransactionsNavigator from './TransactionsNavigator';
 import CategoriesNavigator from './CategoriesNavigator';
 import UsersNavigator from './UsersNavigator';
 import TagsNavigator from './TagsNavigator';
+import { DrawerContent } from 'containers';
+import { COLORS } from 'styles';
 
 const Drawer = createDrawerNavigator();
 
 const DRAWER_STYLE = {
-  width: 333,
+  width: 320,
+  inactiveTintColor: COLORS.RED,
 };
 
 function MainDrawerNavigator() {
   return (
-    <Drawer.Navigator drawerStyle={DRAWER_STYLE}>
+    <Drawer.Navigator
+      drawerContent={props => {
+        return <DrawerContent {...props} />;
+      }}
+      drawerStyle={DRAWER_STYLE}>
       <Drawer.Screen
         name={NAVIGATORS.DASHBOARD}
         component={DashboardNavigator}

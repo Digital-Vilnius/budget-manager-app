@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { ViewPropTypes } from 'react-native';
 import * as PropTypes from 'prop-types';
 import _ from 'lodash';
-import { Modal } from 'components';
-import { Form } from 'styles';
+import { Button, Modal } from 'components';
+import { BUTTONS, Form, Grid } from 'styles';
+import { Footer } from './styles';
 import { CategoriesService } from 'services';
 import Categories from '../Categories';
 import { connect } from 'react-redux';
@@ -19,12 +20,36 @@ function CategorySelect(props) {
     name,
     placeholder,
     selectedAccount,
+    multiple,
   } = props;
   const [visible, setVisible] = useState(false);
+  const [selectedCategoriesIds, setSelectedCategoriesIds] = useState([]);
 
   const selectItem = ({ id }) => {
+    if (selectedCategoriesIds.includes(id)) {
+      const categoriesIds = selectedCategoriesIds.filter(item => item !== id);
+      setSelectedCategoriesIds(categoriesIds);
+      return;
+    }
+
+    if (multiple) {
+      setSelectedCategoriesIds([...selectedCategoriesIds, id]);
+    } else {
+      setSelectedCategoriesIds([id]);
+    }
+  };
+
+  const confirm = () => {
     setVisible(false);
-    onChange({ name, value: id });
+
+    let selectedValue;
+    if (multiple) {
+      selectedValue = selectedCategoriesIds;
+    } else {
+      selectedValue = selectedCategoriesIds[0] || null;
+    }
+
+    onChange({ name, value: selectedValue });
   };
 
   const renderValue = () => {
@@ -51,16 +76,35 @@ function CategorySelect(props) {
         title="Select category"
         visible={visible}>
         <Categories
+          options
+          selectedCategoriesIds={selectedCategoriesIds}
           filter={{ accountId: selectedAccount.id }}
           onPress={selectItem}
         />
+        <Footer>
+          <Grid.Row mb={10}>
+            <Button onPress={confirm} title="Select" />
+          </Grid.Row>
+          <Grid.Row>
+            <Button
+              outline
+              type={BUTTONS.SECONDARY}
+              onPress={() => setVisible(false)}
+              title="Cancel"
+            />
+          </Grid.Row>
+        </Footer>
       </Modal>
     </Form.Container>
   );
 }
 
 CategorySelect.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.oneOf([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
+  multiple: PropTypes.bool,
   style: ViewPropTypes.style,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -74,6 +118,7 @@ CategorySelect.propTypes = {
 CategorySelect.defaultProps = {
   style: {},
   value: null,
+  multiple: false,
   placeholder: null,
   disabled: false,
   onBlur: _.noop,

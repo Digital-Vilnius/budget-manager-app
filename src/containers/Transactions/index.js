@@ -70,10 +70,6 @@ class Transactions extends React.Component {
     }
   }
 
-  renderSectionHeader(title) {
-    return <SectionHeader title={title} />;
-  }
-
   renderItem(item) {
     const { onPress, onLongPress } = this.props;
 
@@ -103,9 +99,9 @@ class Transactions extends React.Component {
           onEndReachedThreshold={0}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => this.renderItem(item)}
-          renderSectionHeader={({ section: { title } }) =>
-            this.renderSectionHeader(title)
-          }
+          renderSectionHeader={({ section: { title } }) => (
+            <SectionHeader title={title} />
+          )}
         />
       </Container>
     );

@@ -64,7 +64,7 @@ function Input(props) {
         onBlur={handleOnBlur}
         onFocus={() => setFocus(true)}
         focus={focus}
-        value={value}
+        value={value ? value.toString() : null}
         onChange={handleOnChange}
       />
     </Container>
@@ -72,7 +72,7 @@ function Input(props) {
 }
 
 Input.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   label: PropTypes.string,
   disabled: PropTypes.bool,
   multiline: PropTypes.bool,
