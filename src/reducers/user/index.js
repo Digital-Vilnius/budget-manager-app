@@ -1,15 +1,5 @@
 import update from 'immutability-helper';
-import {
-  UPDATE_LOCALE_ERROR,
-  UPDATE_LOCALE_START,
-  UPDATE_USER_DETAILS_START,
-  UPDATE_USER_DETAILS,
-  UPDATE_USER_DETAILS_ERROR,
-  UPDATE_LOCALE,
-  GET_USER,
-  GET_USER_ERROR,
-  GET_USER_START,
-} from 'actions/user/types';
+import { AccountTypes, AuthTypes, UserTypes } from 'types';
 import { LOCALES } from 'constants';
 
 const initialState = {
@@ -22,23 +12,23 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_USER_START:
-    case UPDATE_LOCALE_START:
-    case UPDATE_USER_DETAILS_START: {
+    case UserTypes.GET_USER_START:
+    case UserTypes.UPDATE_LOCALE_START:
+    case UserTypes.UPDATE_USER_DETAILS_START: {
       return update(state, {
         isLoading: { $set: true },
       });
     }
 
-    case UPDATE_LOCALE_ERROR:
-    case GET_USER_ERROR:
-    case UPDATE_USER_DETAILS_ERROR: {
-      return update(state, {
-        isLoading: { $set: false },
-      });
+    case AccountTypes.SELECT_ACCOUNT:
+    case AuthTypes.LOGOUT:
+    case UserTypes.UPDATE_LOCALE_ERROR:
+    case UserTypes.GET_USER_ERROR:
+    case UserTypes.UPDATE_USER_DETAILS_ERROR: {
+      return initialState;
     }
 
-    case GET_USER: {
+    case UserTypes.GET_USER: {
       return update(state, {
         isLoading: { $set: false },
         id: { $set: payload.id },
@@ -48,8 +38,8 @@ export default (state = initialState, { type, payload }) => {
       });
     }
 
-    case UPDATE_USER_DETAILS:
-    case UPDATE_LOCALE: {
+    case UserTypes.UPDATE_USER_DETAILS:
+    case UserTypes.UPDATE_LOCALE: {
       return update(state, {
         isLoading: { $set: false },
       });

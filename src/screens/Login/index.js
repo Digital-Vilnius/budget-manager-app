@@ -10,7 +10,7 @@ import { ScreenContainer } from 'components';
 import PropTypes from 'prop-types';
 import { SCREENS } from 'constants';
 import { connect } from 'react-redux';
-import { auth as actions, user as userActions } from 'actions';
+import { AuthActions, UserActions } from 'actions';
 import { LoginForm } from 'containers';
 
 function LoginScreen(props) {
@@ -56,8 +56,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  login: actions.login,
-  getUser: userActions.getUser,
+  login: AuthActions.login,
+  getUser: UserActions.getUser,
 };
 
 export default connect(

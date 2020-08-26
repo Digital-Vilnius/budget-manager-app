@@ -9,7 +9,7 @@ import {
 import { Avatar, MenuItem, Separator } from 'components';
 import { Grid } from 'styles';
 import { connect } from 'react-redux';
-import { auth as actions } from 'actions';
+import { AuthActions as actions } from 'actions';
 import PropTypes from 'prop-types';
 import { SCREENS } from 'constants';
 

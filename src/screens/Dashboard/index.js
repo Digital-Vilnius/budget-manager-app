@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Balance, Container, Header, Label, Section, Subtitle } from './styles';
 import { Grid } from 'styles';
 import { SharedTypes } from 'utils';

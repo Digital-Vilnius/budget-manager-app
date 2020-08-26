@@ -5,7 +5,7 @@ import { Mapper, SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
 import { SectionHeader, TransactionsItem } from 'components';
 import { connect } from 'react-redux';
-import { transactions as actions } from 'actions';
+import { TransactionsActions } from 'actions';
 import { LIST } from 'constants';
 import autoBind from 'auto-bind';
 import _ from 'lodash';
@@ -134,10 +134,12 @@ function mapStateToProps(state) {
   return { transactions, isLoading, count, isRefreshing };
 }
 
+const mapDispatchToProps = {
+  getTransactions: TransactionsActions.getTransactions,
+  refreshTransactions: TransactionsActions.refreshTransactions,
+};
+
 export default connect(
   mapStateToProps,
-  {
-    getTransactions: actions.getTransactions,
-    refreshTransactions: actions.refreshTransactions,
-  },
+  mapDispatchToProps,
 )(Transactions);

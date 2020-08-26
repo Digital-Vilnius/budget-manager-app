@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from './styles';
 import PropTypes from 'prop-types';
 import { NAVIGATORS } from 'constants';
-import AccountSelect from 'containers/AccountSelect';
+import { AccountSelect } from 'containers';
 import { Title } from 'components';
 import { COLORS, Grid } from 'styles';
 

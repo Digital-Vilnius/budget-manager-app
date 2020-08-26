@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NAVIGATORS, SCREENS } from 'constants';
-import { auth as actions } from 'actions';
+import { AuthActions } from 'actions';
 import { ActivityIndicator } from 'react-native';
 import { SharedTypes } from 'utils';
 
@@ -41,7 +41,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  getLoggedUser: actions.getLoggedUser,
+  getLoggedUser: AuthActions.getLoggedUser,
 };
 
 export default connect(

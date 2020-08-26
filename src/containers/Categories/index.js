@@ -5,7 +5,7 @@ import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
 import { List } from 'components';
 import { connect } from 'react-redux';
-import { categories as actions } from 'actions';
+import { CategoriesActions } from 'actions';
 
 function Categories(props) {
   const {
@@ -59,8 +59,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  getCategories: actions.getCategories,
-  refreshCategories: actions.refreshCategories,
+  getCategories: CategoriesActions.getCategories,
+  refreshCategories: CategoriesActions.refreshCategories,
 };
 
 export default connect(

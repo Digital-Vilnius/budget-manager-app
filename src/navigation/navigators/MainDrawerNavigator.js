@@ -5,7 +5,7 @@ import { NAVIGATORS } from 'constants';
 import DashboardNavigator from './DashboardNavigator';
 import TransactionsNavigator from './TransactionsNavigator';
 import CategoriesNavigator from './CategoriesNavigator';
-import AccountUsersNavigator from './UsersNavigator';
+import AccountUsersNavigator from './AccountUsersNavigator';
 import TagsNavigator from './TagsNavigator';
 import { DrawerContent } from 'containers';
 import { COLORS } from 'styles';

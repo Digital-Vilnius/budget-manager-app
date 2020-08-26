@@ -3,7 +3,7 @@ import { Container } from './styles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { UserDetailsForm } from 'containers';
-import { auth as actions } from 'actions';
+import { UserActions } from 'actions';
 
 function EditUserDetailsScreen(props) {
   const {
@@ -11,12 +11,12 @@ function EditUserDetailsScreen(props) {
     formData,
     isLoading,
     updateUserDetails,
-    getLoggedUser,
+    getUser,
   } = props;
 
   const save = data => {
     updateUserDetails(data, () => {
-      getLoggedUser(() => {
+      getUser(() => {
         navigation.goBack();
       });
     });
@@ -43,7 +43,7 @@ EditUserDetailsScreen.propTypes = {
     goBack: PropTypes.func.isRequired,
   }).isRequired,
   updateUserDetails: PropTypes.func.isRequired,
-  getLoggedUser: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
@@ -55,8 +55,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  updateUserDetails: actions.updateUserDetails,
-  getLoggedUser: actions.getLoggedUser,
+  updateUserDetails: UserActions.updateUserDetails,
+  getUser: UserActions.getUser,
 };
 
 export default connect(

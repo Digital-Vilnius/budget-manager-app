@@ -1,9 +1,5 @@
 import update from 'immutability-helper';
-import {
-  SELECT_ACCOUNT_START,
-  SELECT_ACCOUNT_ERROR,
-  SELECT_ACCOUNT,
-} from 'actions/account/types';
+import { AccountTypes } from 'types';
 
 const initialState = {
   account: null,
@@ -12,17 +8,17 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case SELECT_ACCOUNT_START: {
+    case AccountTypes.SELECT_ACCOUNT_START: {
       return update(state, {
         isLoading: { $set: true },
       });
     }
 
-    case SELECT_ACCOUNT_ERROR: {
+    case AccountTypes.SELECT_ACCOUNT_ERROR: {
       return initialState;
     }
 
-    case SELECT_ACCOUNT: {
+    case AccountTypes.SELECT_ACCOUNT: {
       return update(state, {
         isLoading: { $set: false },
         account: { $set: payload.account },

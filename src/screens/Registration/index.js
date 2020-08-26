@@ -11,7 +11,7 @@ import { SCREENS } from 'constants';
 import PropTypes from 'prop-types';
 import { RegistrationForm } from 'containers';
 import { connect } from 'react-redux';
-import { auth as actions } from 'actions';
+import { AuthActions } from 'actions';
 
 function RegistrationScreen(props) {
   const { navigation, register, isLoading } = props;
@@ -52,7 +52,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  register: actions.register,
+  register: AuthActions.register,
 };
 
 export default connect(

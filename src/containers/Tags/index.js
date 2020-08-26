@@ -5,7 +5,7 @@ import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
 import { List } from 'components';
 import { connect } from 'react-redux';
-import { tags as actions } from 'actions';
+import { TagsActions } from 'actions';
 
 function Tags(props) {
   const {
@@ -59,8 +59,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  getTags: actions.getTags,
-  refreshTags: actions.refreshTags,
+  getTags: TagsActions.getTags,
+  refreshTags: TagsActions.refreshTags,
 };
 
 export default connect(

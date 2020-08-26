@@ -1,21 +1,5 @@
 import update from 'immutability-helper';
-import {
-  GET_CATEGORIES_START,
-  GET_CATEGORIES_ERROR,
-  GET_CATEGORIES,
-  ADD_CATEGORY_START,
-  ADD_CATEGORY_ERROR,
-  ADD_CATEGORY,
-  REFRESH_CATEGORIES_ERROR,
-  REFRESH_CATEGORIES_START,
-  REFRESH_CATEGORIES,
-  EDIT_CATEGORY_START,
-  GET_CATEGORY_START,
-  GET_CATEGORY_ERROR,
-  EDIT_CATEGORY_ERROR,
-  EDIT_CATEGORY,
-  GET_CATEGORY,
-} from 'actions/categories/types';
+import { AccountTypes, AuthTypes, CategoriesTypes } from 'types';
 
 const initialState = {
   categories: [],
@@ -27,22 +11,22 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case EDIT_CATEGORY_START:
-    case GET_CATEGORY_START:
-    case ADD_CATEGORY_START:
-    case GET_CATEGORIES_START: {
+    case CategoriesTypes.EDIT_CATEGORY_START:
+    case CategoriesTypes.GET_CATEGORY_START:
+    case CategoriesTypes.ADD_CATEGORY_START:
+    case CategoriesTypes.GET_CATEGORIES_START: {
       return update(state, {
         isLoading: { $set: true },
       });
     }
 
-    case REFRESH_CATEGORIES_START: {
+    case CategoriesTypes.REFRESH_CATEGORIES_START: {
       return update(state, {
         isRefreshing: { $set: true },
       });
     }
 
-    case REFRESH_CATEGORIES: {
+    case CategoriesTypes.REFRESH_CATEGORIES: {
       return update(state, {
         isRefreshing: { $set: false },
         categories: { $set: payload.categories },
@@ -50,29 +34,31 @@ export default (state = initialState, { type, payload }) => {
       });
     }
 
-    case GET_CATEGORY_ERROR:
-    case EDIT_CATEGORY_ERROR:
-    case REFRESH_CATEGORIES_ERROR:
-    case ADD_CATEGORY_ERROR:
-    case GET_CATEGORIES_ERROR: {
+    case AccountTypes.SELECT_ACCOUNT:
+    case AuthTypes.LOGOUT:
+    case CategoriesTypes.GET_CATEGORY_ERROR:
+    case CategoriesTypes.EDIT_CATEGORY_ERROR:
+    case CategoriesTypes.REFRESH_CATEGORIES_ERROR:
+    case CategoriesTypes.ADD_CATEGORY_ERROR:
+    case CategoriesTypes.GET_CATEGORIES_ERROR: {
       return initialState;
     }
 
-    case EDIT_CATEGORY:
-    case ADD_CATEGORY: {
+    case CategoriesTypes.EDIT_CATEGORY:
+    case CategoriesTypes.ADD_CATEGORY: {
       return update(state, {
         isLoading: { $set: false },
       });
     }
 
-    case GET_CATEGORY: {
+    case CategoriesTypes.GET_CATEGORY: {
       return update(state, {
         isLoading: { $set: false },
         category: { $set: payload.category },
       });
     }
 
-    case GET_CATEGORIES: {
+    case CategoriesTypes.GET_CATEGORIES: {
       const categories = state.categories;
       return update(state, {
         isLoading: { $set: false },

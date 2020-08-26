@@ -4,7 +4,7 @@ import { Button, List, OptionsItem } from 'components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SharedTypes } from 'utils';
-import { accounts as actions, account as accountActions } from 'actions';
+import { AccountsActions, AccountActions } from 'actions';
 import { Grid } from 'styles';
 
 function AccountSelect(props) {
@@ -92,9 +92,9 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  selectAccount: accountActions.selectAccount,
-  getAccounts: actions.getAccounts,
-  refreshAccounts: actions.refreshAccounts,
+  selectAccount: AccountActions.selectAccount,
+  getAccounts: AccountsActions.getAccounts,
+  refreshAccounts: AccountsActions.refreshAccounts,
 };
 
 export default connect(

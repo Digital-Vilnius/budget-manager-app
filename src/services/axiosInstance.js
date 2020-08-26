@@ -1,8 +1,10 @@
 import axios from 'axios';
 import promise from 'promise';
 import { store } from 'store';
-import { auth as actions } from 'actions';
+import { AuthTypes } from 'types';
 import FlashMessagesService from './flashMessages';
+import * as NavigationService from './navigation';
+import { NAVIGATORS } from 'constants';
 
 const axiosInstance = axios.create({
   baseURL: 'https://40b95c9d3531.ngrok.io/api',
@@ -27,7 +29,8 @@ axiosInstance.interceptors.response.use(
     const { status } = response;
     switch (status) {
       case 401: {
-        store.dispatch(actions.logout());
+        store.dispatch({ type: AuthTypes.LOGOUT });
+        NavigationService.navigate(NAVIGATORS.AUTH);
         break;
       }
 

@@ -1,19 +1,5 @@
 import update from 'immutability-helper';
-import {
-  GET_LOGGED_USER,
-  GET_LOGGED_USER_ERROR,
-  GET_LOGGED_USER_START,
-  LOGIN,
-  LOGIN_ERROR,
-  LOGIN_START,
-  LOGOUT,
-  REGISTER_FAMILY,
-  REGISTER_FAMILY_ERROR,
-  REGISTER_FAMILY_START,
-  REGISTER,
-  REGISTER_ERROR,
-  REGISTER_START,
-} from 'actions/auth/types';
+import { AuthTypes } from 'types';
 
 const initialState = {
   id: null,
@@ -25,25 +11,25 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_LOGGED_USER_START:
-    case REGISTER_START:
-    case REGISTER_FAMILY_START:
-    case LOGIN_START: {
+    case AuthTypes.GET_LOGGED_USER_START:
+    case AuthTypes.REGISTER_START:
+    case AuthTypes.REGISTER_FAMILY_START:
+    case AuthTypes.LOGIN_START: {
       return update(state, {
         isLoading: { $set: true },
       });
     }
 
-    case GET_LOGGED_USER_ERROR:
-    case REGISTER_FAMILY_ERROR:
-    case LOGIN_ERROR:
-    case REGISTER_ERROR: {
+    case AuthTypes.GET_LOGGED_USER_ERROR:
+    case AuthTypes.REGISTER_FAMILY_ERROR:
+    case AuthTypes.LOGIN_ERROR:
+    case AuthTypes.REGISTER_ERROR: {
       return update(state, {
         isLoading: { $set: false },
       });
     }
 
-    case LOGIN: {
+    case AuthTypes.LOGIN: {
       return update(state, {
         isLoading: { $set: false },
         isLogged: { $set: true },
@@ -53,14 +39,14 @@ export default (state = initialState, { type, payload }) => {
       });
     }
 
-    case REGISTER_FAMILY:
-    case REGISTER: {
+    case AuthTypes.REGISTER_FAMILY:
+    case AuthTypes.REGISTER: {
       return update(state, {
         isLoading: { $set: false },
       });
     }
 
-    case GET_LOGGED_USER: {
+    case AuthTypes.GET_LOGGED_USER: {
       return update(state, {
         isLoading: { $set: false },
         id: { $set: payload.id },
@@ -69,7 +55,7 @@ export default (state = initialState, { type, payload }) => {
       });
     }
 
-    case LOGOUT: {
+    case AuthTypes.LOGOUT: {
       return initialState;
     }
 

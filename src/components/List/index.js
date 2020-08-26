@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Footer } from './styles';
 import { ViewPropTypes, FlatList } from 'react-native';
-import { Separator } from 'components';
+import Separator from '../Separator';
 import { LIST } from 'constants';
 import autoBind from 'auto-bind';
 import _ from 'lodash';

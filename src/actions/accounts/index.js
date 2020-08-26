@@ -1,25 +1,18 @@
 import { AccountsService, FlashMessagesService } from 'services';
-import {
-  GET_ACCOUNTS,
-  GET_ACCOUNTS_ERROR,
-  GET_ACCOUNTS_START,
-  REFRESH_ACCOUNTS,
-  REFRESH_ACCOUNTS_ERROR,
-  REFRESH_ACCOUNTS_START,
-} from './types';
+import { AccountsTypes } from 'types';
 
 export function getAccounts(request) {
   return async dispatch => {
     try {
-      dispatch({ type: GET_ACCOUNTS_START });
+      dispatch({ type: AccountsTypes.GET_ACCOUNTS_START });
       const { result, count } = await AccountsService.getAccounts(request);
       dispatch({
-        type: GET_ACCOUNTS,
+        type: AccountsTypes.GET_ACCOUNTS,
         payload: { accounts: result, count },
       });
     } catch (exception) {
       FlashMessagesService.showGenericError();
-      dispatch({ type: GET_ACCOUNTS_ERROR });
+      dispatch({ type: AccountsTypes.GET_ACCOUNTS_ERROR });
     }
   };
 }
@@ -27,15 +20,15 @@ export function getAccounts(request) {
 export function refreshAccounts(request) {
   return async dispatch => {
     try {
-      dispatch({ type: REFRESH_ACCOUNTS_START });
+      dispatch({ type: AccountsTypes.REFRESH_ACCOUNTS_START });
       const { result, count } = await AccountsService.getAccounts(request);
       dispatch({
-        type: REFRESH_ACCOUNTS,
+        type: AccountsTypes.REFRESH_ACCOUNTS,
         payload: { accounts: result, count },
       });
     } catch (exception) {
       FlashMessagesService.showGenericError();
-      dispatch({ type: REFRESH_ACCOUNTS_ERROR });
+      dispatch({ type: AccountsTypes.REFRESH_ACCOUNTS_ERROR });
     }
   };
 }

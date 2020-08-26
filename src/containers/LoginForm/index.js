@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from '../Form';
 import autoBind from 'auto-bind';
-import { Button, Input, Title } from 'components';
+import { Button, Input } from 'components';
 import { Container, Footer } from './styles';
 import * as PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';

@@ -5,7 +5,7 @@ import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
 import { List } from 'components';
 import { connect } from 'react-redux';
-import { accountUsers as actions } from 'actions';
+import { AccountUsersActions } from 'actions';
 
 function AccountUsers(props) {
   const {
@@ -64,8 +64,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  getAccountUsers: actions.getAccountUsers,
-  refreshAccountUsers: actions.refreshAccountUsers,
+  getAccountUsers: AccountUsersActions.getAccountUsers,
+  refreshAccountUsers: AccountUsersActions.refreshAccountUsers,
 };
 
 export default connect(

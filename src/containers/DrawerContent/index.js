@@ -20,7 +20,7 @@ import { COLORS, Grid } from 'styles';
 import { Icon, IconButton } from 'components';
 import { NAVIGATORS, SCREENS } from 'constants';
 import { SharedTypes } from 'utils';
-import { auth as actions } from 'actions';
+import { AuthActions } from 'actions';
 
 function DrawerContent(props) {
   const { style, navigation, selectedAccount, logout } = props;
@@ -120,7 +120,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  logout: actions.logout,
+  logout: AuthActions.logout,
 };
 
 export default connect(

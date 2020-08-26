@@ -1,12 +1,5 @@
 import update from 'immutability-helper';
-import {
-  GET_ACCOUNT_USERS_START,
-  GET_ACCOUNT_USERS_ERROR,
-  GET_ACCOUNT_USERS,
-  REFRESH_ACCOUNT_USERS_START,
-  REFRESH_ACCOUNT_USERS_ERROR,
-  REFRESH_ACCOUNT_USERS,
-} from 'actions/accountUsers/types';
+import { AccountTypes, AccountUsersTypes, AuthTypes } from 'types';
 
 const initialState = {
   accountUsers: [],
@@ -17,19 +10,19 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_ACCOUNT_USERS_START: {
+    case AccountUsersTypes.GET_ACCOUNT_USERS_START: {
       return update(state, {
         isLoading: { $set: true },
       });
     }
 
-    case REFRESH_ACCOUNT_USERS_START: {
+    case AccountUsersTypes.REFRESH_ACCOUNT_USERS_START: {
       return update(state, {
         isRefreshing: { $set: true },
       });
     }
 
-    case REFRESH_ACCOUNT_USERS: {
+    case AccountUsersTypes.REFRESH_ACCOUNT_USERS: {
       return update(state, {
         isRefreshing: { $set: false },
         accountUsers: { $set: payload.accountUsers },
@@ -37,12 +30,14 @@ export default (state = initialState, { type, payload }) => {
       });
     }
 
-    case GET_ACCOUNT_USERS_ERROR:
-    case REFRESH_ACCOUNT_USERS_ERROR: {
+    case AccountTypes.SELECT_ACCOUNT:
+    case AuthTypes.LOGOUT:
+    case AccountUsersTypes.GET_ACCOUNT_USERS_ERROR:
+    case AccountUsersTypes.REFRESH_ACCOUNT_USERS_ERROR: {
       return initialState;
     }
 
-    case GET_ACCOUNT_USERS: {
+    case AccountUsersTypes.GET_ACCOUNT_USERS: {
       const users = state.users;
       return update(state, {
         isLoading: { $set: false },
