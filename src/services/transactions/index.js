@@ -3,14 +3,15 @@ import { store } from 'store';
 
 class TransactionsService {
   static async getTransactions({ filter, paging }) {
-    return axiosInstance.get('/transactions', {
+    const accountId = store.getState().accounts.selectedAccount.id;
+    return axiosInstance.get(`/account/${accountId}/transactions`, {
       params: { ...paging, ...filter },
     });
   }
 
   static async addTransaction(request) {
-    request.accountId = store.getState().accounts.selectedAccount.id;
-    return axiosInstance.post('/transactions', request);
+    const accountId = store.getState().accounts.selectedAccount.id;
+    return axiosInstance.post(`/account/${accountId}/transactions`, request);
   }
 }
 

@@ -3,17 +3,14 @@ import { Categories, CategoryForm } from 'containers';
 import { Header } from './styles';
 import { IconButton, Input, Modal, ScreenContainer } from 'components';
 import { connect } from 'react-redux';
-import { SharedTypes } from 'utils';
 import PropTypes from 'prop-types';
 import { categories as actions } from 'actions';
 import * as _ from 'lodash';
 
 function CategoriesScreen(props) {
-  const { selectedAccount, navigation, addCategory, isLoading } = props;
+  const { navigation, addCategory, isLoading } = props;
   const [addVisible, setAddVisible] = useState(false);
-  const [filter, setFilter] = useState({
-    accountId: selectedAccount.id,
-  });
+  const [filter, setFilter] = useState({});
 
   useEffect(() => {
     navigation.setOptions({
@@ -22,10 +19,6 @@ function CategoriesScreen(props) {
       ),
     });
   }, [navigation]);
-
-  useEffect(() => {
-    setFilter({ accountId: selectedAccount.id });
-  }, [selectedAccount]);
 
   const search = ({ value }) => {
     setFilter({ ...filter, keyword: value });
@@ -66,7 +59,6 @@ function CategoriesScreen(props) {
 }
 
 CategoriesScreen.propTypes = {
-  selectedAccount: SharedTypes.AccountType.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
@@ -75,10 +67,9 @@ CategoriesScreen.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { accounts, categories } = state;
-  const { selectedAccount } = accounts;
+  const { categories } = state;
   const { isLoading } = categories;
-  return { selectedAccount, isLoading };
+  return { isLoading };
 }
 
 const mapDispatchToProps = {

@@ -12,7 +12,6 @@ import {
   ScreenContainer,
 } from 'components';
 import { connect } from 'react-redux';
-import { SharedTypes } from 'utils';
 import PropTypes from 'prop-types';
 import { Grid } from 'styles';
 import { Header } from './styles';
@@ -20,7 +19,7 @@ import * as _ from 'lodash';
 import { transactions as actions } from 'actions';
 
 function TransactionsScreen(props) {
-  const { selectedAccount, navigation, isLoading, addTransaction } = props;
+  const { navigation, isLoading, addTransaction } = props;
   const [addVisible, setAddVisible] = useState(false);
   const [filterVisible, setFilterVisible] = useState(false);
   const [filter, setFilter] = useState({});
@@ -84,13 +83,7 @@ function TransactionsScreen(props) {
         />
         <QuickFilters filter={filter} onChange={onQuickFilter} />
       </Header>
-      <Transactions
-        filter={{
-          accountId: selectedAccount.id,
-          keyword,
-          ...filter,
-        }}
-      />
+      <Transactions filter={{ keyword, ...filter }} />
       <Modal
         title="Add transaction"
         visible={addVisible}
@@ -117,7 +110,6 @@ function TransactionsScreen(props) {
 }
 
 TransactionsScreen.propTypes = {
-  selectedAccount: SharedTypes.AccountType.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
@@ -126,10 +118,9 @@ TransactionsScreen.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { accounts, transactions } = state;
-  const { selectedAccount } = accounts;
+  const { transactions } = state;
   const { isLoading } = transactions;
-  return { selectedAccount, isLoading };
+  return { isLoading };
 }
 
 const mapDispatchToProps = {

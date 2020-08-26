@@ -6,13 +6,13 @@ import {
   REFRESH_USERS_ERROR,
   REFRESH_USERS_START,
 } from './types';
-import { UsersService, FlashMessagesService } from 'services';
+import { AccountUsersService, FlashMessagesService } from 'services';
 
 export function getUsers(request) {
   return async dispatch => {
     try {
       dispatch({ type: GET_USERS_START });
-      const { result, count } = await UsersService.getUsers(request);
+      const { result, count } = await AccountUsersService.getAccountUsers(request);
       dispatch({
         type: GET_USERS,
         payload: { users: result, count },
@@ -28,7 +28,7 @@ export function refreshUsers(request) {
   return async dispatch => {
     try {
       dispatch({ type: REFRESH_USERS_START });
-      const { result, count } = await UsersService.getUsers(request);
+      const { result, count } = await AccountUsersService.getAccountUsers(request);
       dispatch({
         type: REFRESH_USERS,
         payload: { users: result, count },

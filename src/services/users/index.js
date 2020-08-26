@@ -1,19 +1,16 @@
-import axiosInstance from 'services/axiosInstance';
-import { store } from 'store';
+import axiosInstance from '../axiosInstance';
 
 class UsersService {
-  static async getUsers({ filter, paging }) {
-    return axiosInstance.get('/accountUsers', {
-      params: { ...paging, ...filter },
-    });
+  static async updateLocale(request) {
+    return axiosInstance.put('/user/locale', request);
   }
 
-  static findUserById(id) {
-    const users = store.getState().users.users;
+  static async updateUserDetails(request) {
+    return axiosInstance.put('/user/details', request);
+  }
 
-    if (users.length > 0) {
-      return users.find(user => user.id === id);
-    }
+  static async getUser() {
+    return axiosInstance.get('/user');
   }
 }
 

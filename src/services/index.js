@@ -3,8 +3,9 @@ import FlashMessagesService from './flashMessages';
 import CategoriesService from './categories';
 import AuthService from './auth';
 import AccountsService from './accounts';
-import UsersService from './users';
+import AccountUsersService from './accountUsers';
 import TagsService from './tags';
+import UsersService from './users';
 import * as NavigationService from './navigation';
 
 export {
@@ -13,7 +14,8 @@ export {
   CategoriesService,
   AuthService,
   AccountsService,
-  UsersService,
+  AccountUsersService,
   NavigationService,
   TagsService,
+  UsersService,
 };

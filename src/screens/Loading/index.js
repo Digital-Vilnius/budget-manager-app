@@ -4,13 +4,25 @@ import PropTypes from 'prop-types';
 import { NAVIGATORS, SCREENS } from 'constants';
 import { auth as actions, accounts as accountsAction } from 'actions';
 import { ActivityIndicator } from 'react-native';
+import { SharedTypes } from 'utils';
 
 function LoadingScreen(props) {
-  const { navigation, isLogged, getLoggedUser, getAccounts } = props;
+  const {
+    navigation,
+    isLogged,
+    getLoggedUser,
+    getAccounts,
+    selectedAccount,
+  } = props;
 
   useEffect(() => {
     if (!isLogged) {
       navigation.replace(NAVIGATORS.AUTH, { screen: SCREENS.LOGIN });
+      return;
+    }
+
+    if (!selectedAccount) {
+      navigation.replace(NAVIGATORS.AUTH, { screen: SCREENS.ACCOUNT_SELECT });
       return;
     }
 
@@ -31,12 +43,14 @@ LoadingScreen.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   getLoggedUser: PropTypes.func.isRequired,
   getAccounts: PropTypes.func.isRequired,
+  selectedAccount: SharedTypes.AccountType,
 };
 
 function mapStateToProps(state) {
-  const { auth } = state;
+  const { auth, accounts } = state;
   const { isLogged } = auth;
-  return { isLogged };
+  const { selectedAccount } = accounts;
+  return { isLogged, selectedAccount };
 }
 
 export default connect(

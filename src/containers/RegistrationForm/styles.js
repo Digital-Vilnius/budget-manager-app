@@ -8,7 +8,7 @@ const Container = styled.View`
 `;
 
 const Footer = styled.View`
-  padding: 10px 15px;
+  padding: 20px 15px;
 `;
 
 export { Container, Footer };

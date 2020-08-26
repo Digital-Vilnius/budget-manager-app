@@ -110,7 +110,7 @@ Users.propTypes = {
   getUsers: PropTypes.func.isRequired,
   refreshUsers: PropTypes.func.isRequired,
   users: PropTypes.arrayOf(SharedTypes.UserType).isRequired,
-  filter: SharedTypes.UsersFilter.isRequired,
+  filter: SharedTypes.AccountUsersFilter.isRequired,
 };
 
 Users.defaultProps = {

@@ -121,8 +121,8 @@ DrawerContent.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  const { auth, accounts } = state;
-  const { fullName, email } = auth;
+  const { accounts, user } = state;
+  const { fullName, email } = user;
   const { selectedAccount } = accounts;
   return { fullName, email, selectedAccount };
 }

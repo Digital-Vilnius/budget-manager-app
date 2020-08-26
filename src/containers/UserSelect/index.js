@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Modal } from 'components';
 import { Form } from 'styles';
-import { UsersService } from 'services';
+import { AccountUsersService } from 'services';
 import { connect } from 'react-redux';
 import { SharedTypes } from 'utils';
 import Users from '../Users';
@@ -29,7 +29,7 @@ function UserSelect(props) {
 
   const renderValue = () => {
     if (value) {
-      const fullName = UsersService.findUserById(value)?.fullName;
+      const fullName = AccountUsersService.findUserById(value)?.fullName;
       return <Form.Value>{fullName}</Form.Value>;
     }
 

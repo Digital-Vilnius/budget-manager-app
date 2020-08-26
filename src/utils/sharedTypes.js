@@ -33,17 +33,14 @@ const TagType = PropTypes.shape({
 });
 
 const CategoriesFilter = PropTypes.shape({
-  accountId: PropTypes.number.isRequired,
   keyword: PropTypes.string,
 });
 
 const TagsFilter = PropTypes.shape({
-  accountId: PropTypes.number.isRequired,
   keyword: PropTypes.string,
 });
 
 const TransactionsFilter = PropTypes.shape({
-  accountId: PropTypes.number.isRequired,
   keyword: PropTypes.string,
   amountFrom: PropTypes.number,
   amountTo: PropTypes.number,
@@ -53,8 +50,7 @@ const TransactionsFilter = PropTypes.shape({
   tagsIds: PropTypes.arrayOf(PropTypes.number),
 });
 
-const UsersFilter = PropTypes.shape({
-  accountId: PropTypes.number.isRequired,
+const AccountUsersFilter = PropTypes.shape({
   keyword: PropTypes.string,
 });
 
@@ -82,7 +78,7 @@ export {
   AccountType,
   CategoriesFilter,
   TransactionsFilter,
-  UsersFilter,
+  AccountUsersFilter,
   QuickFilter,
   TagsFilter,
 };

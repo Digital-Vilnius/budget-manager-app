@@ -5,6 +5,7 @@ import auth from './auth';
 import accounts from './accounts';
 import users from './users';
 import tags from './tags';
+import user from './user';
 
 const rootReducer = combineReducers({
   auth,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   accounts,
   users,
   tags,
+  user,
 });
 
 export { rootReducer };

@@ -3,12 +3,21 @@ import PropTypes from 'prop-types';
 import { Container, List } from './styles';
 import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
-import { AccountsItem, Separator } from 'components';
+import { AccountsItem } from 'components';
 import { connect } from 'react-redux';
 import { accounts as actions } from 'actions';
 
 function Accounts(props) {
-  const { style, accounts, getAccounts, isLoading, onPress } = props;
+  const {
+    style,
+    accounts,
+    getAccounts,
+    isLoading,
+    onPress,
+    isRefreshing,
+    count,
+    refreshAccounts,
+  } = props;
 
   useEffect(() => {
     getAccounts();
@@ -21,12 +30,13 @@ function Accounts(props) {
   return (
     <Container style={style}>
       <List
-        refreshing={isLoading}
-        onRefresh={getAccounts}
-        ItemSeparatorComponent={() => <Separator />}
+        isLoading={isLoading}
+        count={count}
+        getFunction={getAccounts}
+        isRefreshing={isRefreshing}
+        refreshFunction={refreshAccounts}
         data={accounts}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => renderItem(item)}
+        renderItem={renderItem}
       />
     </Container>
   );
@@ -37,7 +47,9 @@ Accounts.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   style: ViewPropTypes.style,
   getAccounts: PropTypes.func.isRequired,
+  refreshAccounts: PropTypes.func.isRequired,
   accounts: PropTypes.arrayOf(SharedTypes.AccountType).isRequired,
+  isRefreshing: PropTypes.bool.isRequired,
 };
 
 Accounts.defaultProps = {
@@ -46,15 +58,17 @@ Accounts.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  const {
-    accounts: { accounts, isLoading },
-  } = state;
-  return { accounts, isLoading };
+  const { accounts } = state;
+  const { isLoading, count, isRefreshing } = accounts;
+  return { accounts: accounts.accounts, isLoading, count, isRefreshing };
 }
+
+const mapDispatchToProps = {
+  getAccounts: actions.getAccounts,
+  refreshAccounts: actions.refreshAccounts,
+};
 
 export default connect(
   mapStateToProps,
-  {
-    getAccounts: actions.getAccounts,
-  },
+  mapDispatchToProps,
 )(Accounts);

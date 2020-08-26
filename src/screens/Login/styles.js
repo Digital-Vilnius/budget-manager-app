@@ -6,8 +6,9 @@ const SafeAreaContainer = styled.SafeAreaView`
 `;
 
 const Content = styled.View`
-  padding-top: 25px;
-  background-color: ${COLORS.WHITE};
+  flex: 1;
+  background-color: ${COLORS.PRIMARY};
+  justify-content: flex-end;
 `;
 
 const Footer = styled.TouchableOpacity`

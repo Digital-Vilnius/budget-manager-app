@@ -3,17 +3,14 @@ import { TagForm, Tags } from 'containers';
 import { Header } from './styles';
 import { IconButton, Input, Modal, ScreenContainer } from 'components';
 import { connect } from 'react-redux';
-import { SharedTypes } from 'utils';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
 import { tags as actions } from 'actions';
 
 function TagsScreen(props) {
-  const { selectedAccount, navigation, addTag, isLoading } = props;
+  const { navigation, addTag, isLoading } = props;
   const [addVisible, setAddVisible] = useState(false);
-  const [filter, setFilter] = useState({
-    accountId: selectedAccount.id,
-  });
+  const [filter, setFilter] = useState({});
 
   useEffect(() => {
     navigation.setOptions({
@@ -22,10 +19,6 @@ function TagsScreen(props) {
       ),
     });
   }, [navigation]);
-
-  useEffect(() => {
-    setFilter({ accountId: selectedAccount.id });
-  }, [selectedAccount]);
 
   const search = ({ value }) => {
     setFilter({ ...filter, keyword: value });
@@ -66,7 +59,6 @@ function TagsScreen(props) {
 }
 
 TagsScreen.propTypes = {
-  selectedAccount: SharedTypes.AccountType.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
@@ -75,10 +67,9 @@ TagsScreen.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { accounts, tags } = state;
-  const { selectedAccount } = accounts;
+  const { tags } = state;
   const { isLoading } = tags;
-  return { selectedAccount, isLoading };
+  return { isLoading };
 }
 
 const mapDispatchToProps = {

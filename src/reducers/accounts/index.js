@@ -4,6 +4,9 @@ import {
   GET_ACCOUNTS_ERROR,
   GET_ACCOUNTS,
   SELECT_ACCOUNT,
+  REFRESH_ACCOUNTS_START,
+  REFRESH_ACCOUNTS_ERROR,
+  REFRESH_ACCOUNTS,
 } from 'actions/accounts/types';
 
 const initialState = {
@@ -11,6 +14,7 @@ const initialState = {
   selectedAccount: null,
   count: 0,
   isLoading: false,
+  isRefreshing: false,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -21,18 +25,31 @@ export default (state = initialState, { type, payload }) => {
       });
     }
 
-    case GET_ACCOUNTS_ERROR: {
+    case REFRESH_ACCOUNTS_START: {
       return update(state, {
-        isLoading: { $set: false },
+        isRefreshing: { $set: true },
       });
     }
 
-    case GET_ACCOUNTS: {
+    case GET_ACCOUNTS_ERROR:
+    case REFRESH_ACCOUNTS_ERROR: {
+      return initialState;
+    }
+
+    case REFRESH_ACCOUNTS: {
       return update(state, {
         isLoading: { $set: false },
         accounts: { $set: payload.accounts },
         count: { $set: payload.count },
-        selectedAccount: { $set: payload.selectedAccount },
+      });
+    }
+
+    case GET_ACCOUNTS: {
+      const accounts = state.accounts;
+      return update(state, {
+        isLoading: { $set: false },
+        accounts: { $set: accounts.concat(payload.accounts) },
+        count: { $set: payload.count },
       });
     }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Form from '../Form';
 import autoBind from 'auto-bind';
 import { Button, Input, Title } from 'components';
-import { Container } from './styles';
+import { Container, Footer } from './styles';
 import * as PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';
 import { Grid } from 'styles';
@@ -49,9 +49,6 @@ class LoginForm extends Form {
 
     return (
       <Container style={style}>
-        <Grid.Row mb={25} center>
-          <Title text="Sign in to your account" />
-        </Grid.Row>
         <Grid.Row>
           <Input
             placeholder="Enter your email"
@@ -62,7 +59,7 @@ class LoginForm extends Form {
             name="email"
           />
         </Grid.Row>
-        <Grid.Row mb={25}>
+        <Grid.Row>
           <Input
             secureTextEntry
             placeholder="Enter your password"
@@ -73,14 +70,16 @@ class LoginForm extends Form {
             name="password"
           />
         </Grid.Row>
-        <Grid.Row ph={15} mb={25}>
-          <Button
-            disabled={this.hasErrors()}
-            isLoading={isLoading}
-            title="Sign in"
-            onPress={this.submit}
-          />
-        </Grid.Row>
+        <Footer>
+          <Grid.Row>
+            <Button
+              disabled={this.hasErrors()}
+              isLoading={isLoading}
+              title="Sign in"
+              onPress={this.submit}
+            />
+          </Grid.Row>
+        </Footer>
       </Container>
     );
   }

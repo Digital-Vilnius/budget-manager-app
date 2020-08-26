@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from '../Form';
 import autoBind from 'auto-bind';
-import { Button, Input, Title } from 'components';
+import { Button, Input } from 'components';
 import { Container, Footer } from './styles';
 import * as PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';
@@ -10,7 +10,6 @@ import { Validations } from 'utils';
 
 class RegistrationForm extends Form {
   validations = {
-    title: value => Validations.notEmpty(value, 'Title is required'),
     fullName: value => Validations.notEmpty(value, 'Full name is required'),
     email: value => Validations.notEmpty(value, 'Email is required'),
     password: value => Validations.notEmpty(value, 'Password is required'),
@@ -21,7 +20,6 @@ class RegistrationForm extends Form {
 
     this.state = {
       fields: {
-        title: { value: null, error: null, dirty: false },
         fullName: { value: null, error: null, dirty: false },
         email: { value: null, error: null, dirty: false },
         password: { value: null, error: null, dirty: false },
@@ -41,7 +39,6 @@ class RegistrationForm extends Form {
 
     if (this.validateForm()) {
       onSubmit({
-        title: fields.title.value,
         fullName: fields.fullName.value,
         email: fields.email.value,
         password: fields.password.value,
@@ -51,23 +48,10 @@ class RegistrationForm extends Form {
 
   render() {
     const { fields } = this.state;
-    const { style, isLoading, onBack } = this.props;
+    const { style, isLoading } = this.props;
 
     return (
       <Container style={style}>
-        <Grid.Row mb={25} center>
-          <Title text="Account details" />
-        </Grid.Row>
-        <Grid.Row>
-          <Input
-            placeholder="Enter company title"
-            label="Title"
-            value={fields.title.value}
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            name="title"
-          />
-        </Grid.Row>
         <Grid.Row>
           <Input
             placeholder="Enter your full name"
@@ -88,7 +72,7 @@ class RegistrationForm extends Form {
             name="email"
           />
         </Grid.Row>
-        <Grid.Row mb={15}>
+        <Grid.Row>
           <Input
             placeholder="Enter your password"
             label="Password"
@@ -100,16 +84,13 @@ class RegistrationForm extends Form {
           />
         </Grid.Row>
         <Footer>
-          <Grid.Row mb={10}>
+          <Grid.Row>
             <Button
               isLoading={isLoading}
               disabled={this.hasErrors()}
               title="Register"
               onPress={this.submit}
             />
-          </Grid.Row>
-          <Grid.Row>
-            <Button outline title="Back" onPress={onBack} />
           </Grid.Row>
         </Footer>
       </Container>
@@ -119,7 +100,6 @@ class RegistrationForm extends Form {
 
 RegistrationForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  onBack: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   style: ViewPropTypes.style,
 };

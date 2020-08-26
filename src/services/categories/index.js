@@ -3,22 +3,25 @@ import axiosInstance from '../axiosInstance';
 
 class CategoriesService {
   static async getCategories({ filter, paging }) {
-    return axiosInstance.get('/categories', {
+    const accountId = store.getState().accounts.selectedAccount.id;
+    return axiosInstance.get(`/account/${accountId}/categories`, {
       params: { ...filter, ...paging },
     });
   }
 
   static async addCategory(request) {
-    request.accountId = store.getState().accounts.selectedAccount.id;
-    return axiosInstance.post('/categories', request);
+    const accountId = store.getState().accounts.selectedAccount.id;
+    return axiosInstance.post(`/account/${accountId}/categories`, request);
   }
 
   static async editCategory(request) {
-    return axiosInstance.put('/categories', request);
+    const accountId = store.getState().accounts.selectedAccount.id;
+    return axiosInstance.put(`/account/${accountId}/categories`, request);
   }
 
   static async getCategory(id) {
-    return axiosInstance.get(`/categories/${id}`);
+    const accountId = store.getState().accounts.selectedAccount.id;
+    return axiosInstance.get(`/account/${accountId}/categories/${id}`);
   }
 
   static findCategoryById(id) {

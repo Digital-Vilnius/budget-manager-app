@@ -1,11 +1,15 @@
 import styled from 'styled-components';
-import { COLORS, SCREEN_WIDTH, Typography } from 'styles';
+import { COLORS, Typography } from 'styles';
 
 const SafeAreaContainer = styled.SafeAreaView`
   background-color: ${COLORS.LIGHT_GREY_2};
 `;
 
-const Content = styled.View``;
+const Content = styled.View`
+  flex: 1;
+  background-color: ${COLORS.PRIMARY};
+  justify-content: flex-end;
+`;
 
 const Footer = styled.TouchableOpacity`
   height: 40px;
@@ -26,26 +30,4 @@ const FooterMediumText = styled(Typography.MediumText)`
   color: ${COLORS.DARK_BLUE};
 `;
 
-const PagingContainer = styled.ScrollView``;
-
-const Page = styled.View`
-  width: ${SCREEN_WIDTH}px;
-  justify-content: flex-end;
-`;
-
-const IntroContainer = styled.View`
-  width: 100%;
-  padding: 25px 15px 0 15px;
-  background-color: ${COLORS.WHITE};
-`;
-
-export {
-  Footer,
-  FooterText,
-  FooterMediumText,
-  Content,
-  SafeAreaContainer,
-  Page,
-  PagingContainer,
-  IntroContainer,
-};
+export { Footer, FooterText, FooterMediumText, Content, SafeAreaContainer };
