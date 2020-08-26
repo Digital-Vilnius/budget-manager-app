@@ -84,8 +84,8 @@ SettingsScreen.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { auth } = state;
-  const { email, fullName } = auth;
+  const { user } = state;
+  const { email, fullName } = user;
   return { email, fullName };
 }
 

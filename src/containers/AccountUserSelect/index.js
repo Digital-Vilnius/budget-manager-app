@@ -4,33 +4,33 @@ import { Button, Modal, OptionsItem } from 'components';
 import PropTypes from 'prop-types';
 import { Form, Grid } from 'styles';
 import { ViewPropTypes } from 'react-native';
-import { TagsService } from 'services';
-import Tags from '../Tags';
+import { AccountUsersService } from 'services';
+import AccountUsers from '../AccountUsers';
 
-function TagSelect(props) {
+function AccountUserSelect(props) {
   const { onChange, value, name, style, disabled, label, placeholder } = props;
   const [visible, setVisible] = useState(false);
-  const [tag, setTag] = useState(value);
+  const [accountUser, setAccountUser] = useState(value);
 
   const select = () => {
     setVisible(false);
-    onChange({ name, value: tag.id });
+    onChange({ name, value: accountUser.id });
   };
 
   const renderItem = item => (
     <OptionsItem
-      selected={item.id === tag?.id}
-      description={item.description}
-      onPress={() => setTag(item.id === tag?.id ? null : item)}
+      selected={item.id === accountUser?.id}
+      description={item.email}
+      onPress={() => setAccountUser(item.id === accountUser?.id ? null : item)}
       key={item.id}
-      title={item.title}
+      title={item.fullName}
     />
   );
 
   const renderValue = () => {
     if (value) {
-      const title = TagsService.findTagById(value)?.title;
-      return <Form.Value>{title}</Form.Value>;
+      const fullName = AccountUsersService.findAccountUserById(value)?.fullName;
+      return <Form.Value>{fullName}</Form.Value>;
     }
 
     if (placeholder) {
@@ -50,10 +50,10 @@ function TagSelect(props) {
         onClose={() => setVisible(false)}
         title="Select category"
         visible={visible}>
-        <Tags renderItem={renderItem} />
+        <AccountUsers renderItem={renderItem} />
         <Footer>
           <Grid.Row center>
-            <Button disabled={!tag} onPress={select} title="Select" />
+            <Button disabled={!accountUser} onPress={select} title="Select" />
           </Grid.Row>
         </Footer>
       </Modal>
@@ -61,7 +61,7 @@ function TagSelect(props) {
   );
 }
 
-TagSelect.propTypes = {
+AccountUserSelect.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   label: PropTypes.string.isRequired,
@@ -71,11 +71,11 @@ TagSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-TagSelect.defaultProps = {
+AccountUserSelect.defaultProps = {
   style: {},
   value: null,
   placeholder: null,
   disabled: false,
 };
 
-export default TagSelect;
+export default AccountUserSelect;

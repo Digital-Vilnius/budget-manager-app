@@ -7,6 +7,19 @@ const Container = styled.View`
   background-color: ${COLORS.PRIMARY};
 `;
 
+const AccountSelectContainer = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 30px;
+`;
+
+const AccountTitle = styled(Typography.MediumText)`
+  color: ${COLORS.WHITE};
+  font-size: 16px;
+  margin-right: 15px;
+`;
+
 const Content = styled.ScrollView`
   padding: 10px;
 `;
@@ -76,4 +89,6 @@ export {
   BalanceLabel,
   BalanceText,
   Footer,
+  AccountSelectContainer,
+  AccountTitle,
 };

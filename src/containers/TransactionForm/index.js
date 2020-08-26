@@ -9,7 +9,7 @@ import { ViewPropTypes } from 'react-native';
 import CategorySelect from '../CategorySelect';
 import { BUTTONS, Grid } from 'styles';
 import TagSelect from '../TagSelect';
-import UserSelect from '../UserSelect';
+import AccountUserSelect from '../AccountUserSelect';
 
 class TransactionForm extends Form {
   constructor(props) {
@@ -76,7 +76,7 @@ class TransactionForm extends Form {
     return (
       <Container style={style}>
         <Content>
-          <UserSelect
+          <AccountUserSelect
             value={fields.spentById.value}
             onChange={this.handleChange}
             placeholder="Select user"

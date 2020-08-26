@@ -8,7 +8,7 @@ import * as PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';
 import { BUTTONS, Grid } from 'styles';
 import _ from 'lodash';
-import CategorySelect from 'containers/CategorySelect';
+import CategorySelect from '../CategorySelect';
 
 class TransactionsFilterForm extends Form {
   constructor(props) {
@@ -110,14 +110,13 @@ class TransactionsFilterForm extends Form {
             label="Date to"
             name="dateTo"
           />
-          <CategorySelect
-            multiple
-            value={fields.categoriesIds.value}
-            onChange={this.handleChange}
-            placeholder="Select categories"
-            label="Categories"
-            name="categoriesIds"
-          />
+          {/*<CategorySelect*/}
+          {/*  value={fields.categoriesIds.value}*/}
+          {/*  onChange={this.handleChange}*/}
+          {/*  placeholder="Select categories"*/}
+          {/*  label="Categories"*/}
+          {/*  name="categoriesIds"*/}
+          {/*/>*/}
         </Content>
         <Footer>
           <Grid.Row mb={10}>

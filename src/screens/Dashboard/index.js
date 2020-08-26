@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
-import {Balance, Container, Header, Label, Section, Subtitle} from './styles';
+import { Balance, Container, Header, Label, Section, Subtitle } from './styles';
 import { Grid } from 'styles';
 import { SharedTypes } from 'utils';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 function DashboardScreen(props) {
-  const { selectedAccount, navigation } = props;
-  const { balance, title } = selectedAccount;
-
-  useEffect(() => {
-    navigation.setOptions({ title });
-  }, [navigation, title]);
+  const { selectedAccount } = props;
+  const { balance } = selectedAccount;
 
   return (
     <Container>
@@ -22,7 +18,7 @@ function DashboardScreen(props) {
               <Label>Balance</Label>
             </Grid.Row>
             <Grid.Row>
-              <Balance>{`${balance.toFixed(2)} $`}</Balance>
+              <Balance>{`${balance?.toFixed(2)} $`}</Balance>
             </Grid.Row>
           </Section>
         </Grid.Row>
@@ -32,7 +28,7 @@ function DashboardScreen(props) {
               <Label>Incomes</Label>
             </Grid.Row>
             <Grid.Row center>
-              <Subtitle>{`${balance.toFixed(2)} $`}</Subtitle>
+              <Subtitle>{`${balance?.toFixed(2)} $`}</Subtitle>
             </Grid.Row>
           </Section>
           <Section>
@@ -40,7 +36,7 @@ function DashboardScreen(props) {
               <Label>Expenses</Label>
             </Grid.Row>
             <Grid.Row center>
-              <Subtitle>{`${balance.toFixed(2)} $`}</Subtitle>
+              <Subtitle>{`${balance?.toFixed(2)} $`}</Subtitle>
             </Grid.Row>
           </Section>
         </Grid.Row>
@@ -57,9 +53,8 @@ DashboardScreen.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { accounts } = state;
-  const { selectedAccount } = accounts;
-  return { selectedAccount };
+  const { account } = state;
+  return { selectedAccount: account.account };
 }
 
 export default connect(mapStateToProps)(DashboardScreen);

@@ -1,56 +1,31 @@
 import React, { useState } from 'react';
-import { ViewPropTypes } from 'react-native';
-import * as PropTypes from 'prop-types';
-import _ from 'lodash';
-import { Button, Modal } from 'components';
-import { BUTTONS, Form, Grid } from 'styles';
 import { Footer } from './styles';
+import { Button, Modal, OptionsItem } from 'components';
+import PropTypes from 'prop-types';
+import { Form, Grid } from 'styles';
+import { ViewPropTypes } from 'react-native';
 import { CategoriesService } from 'services';
 import Categories from '../Categories';
-import { connect } from 'react-redux';
-import { SharedTypes } from 'utils';
 
 function CategorySelect(props) {
-  const {
-    style,
-    label,
-    disabled,
-    value,
-    onChange,
-    name,
-    placeholder,
-    selectedAccount,
-    multiple,
-  } = props;
+  const { onChange, value, name, style, disabled, label, placeholder } = props;
   const [visible, setVisible] = useState(false);
-  const [selectedCategoriesIds, setSelectedCategoriesIds] = useState([]);
+  const [category, setCategory] = useState(value);
 
-  const selectItem = ({ id }) => {
-    if (selectedCategoriesIds.includes(id)) {
-      const categoriesIds = selectedCategoriesIds.filter(item => item !== id);
-      setSelectedCategoriesIds(categoriesIds);
-      return;
-    }
-
-    if (multiple) {
-      setSelectedCategoriesIds([...selectedCategoriesIds, id]);
-    } else {
-      setSelectedCategoriesIds([id]);
-    }
-  };
-
-  const confirm = () => {
+  const select = () => {
     setVisible(false);
-
-    let selectedValue;
-    if (multiple) {
-      selectedValue = selectedCategoriesIds;
-    } else {
-      selectedValue = selectedCategoriesIds[0] || null;
-    }
-
-    onChange({ name, value: selectedValue });
+    onChange({ name, value: category.id });
   };
+
+  const renderItem = item => (
+    <OptionsItem
+      selected={item.id === category?.id}
+      description={item.description}
+      onPress={() => setCategory(item.id === category?.id ? null : item)}
+      key={item.id}
+      title={item.title}
+    />
+  );
 
   const renderValue = () => {
     if (value) {
@@ -75,23 +50,10 @@ function CategorySelect(props) {
         onClose={() => setVisible(false)}
         title="Select category"
         visible={visible}>
-        <Categories
-          options
-          selectedCategoriesIds={selectedCategoriesIds}
-          filter={{ accountId: selectedAccount.id }}
-          onPress={selectItem}
-        />
+        <Categories renderItem={renderItem} />
         <Footer>
-          <Grid.Row mb={10}>
-            <Button onPress={confirm} title="Select" />
-          </Grid.Row>
-          <Grid.Row>
-            <Button
-              outline
-              type={BUTTONS.SECONDARY}
-              onPress={() => setVisible(false)}
-              title="Cancel"
-            />
+          <Grid.Row center>
+            <Button disabled={!category} onPress={select} title="Select" />
           </Grid.Row>
         </Footer>
       </Modal>
@@ -100,34 +62,20 @@ function CategorySelect(props) {
 }
 
 CategorySelect.propTypes = {
-  value: PropTypes.oneOf([
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.number),
-  ]),
-  multiple: PropTypes.bool,
-  style: ViewPropTypes.style,
   name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onBlur: PropTypes.func,
-  disabled: PropTypes.bool,
-  label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  selectedAccount: SharedTypes.AccountType.isRequired,
+  label: PropTypes.string.isRequired,
+  style: ViewPropTypes.style,
+  disabled: PropTypes.bool,
+  value: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
 };
 
 CategorySelect.defaultProps = {
   style: {},
   value: null,
-  multiple: false,
   placeholder: null,
   disabled: false,
-  onBlur: _.noop,
 };
 
-function mapStateToProps(state) {
-  const { accounts } = state;
-  const { selectedAccount } = accounts;
-  return { selectedAccount };
-}
-
-export default connect(mapStateToProps)(CategorySelect);
+export default CategorySelect;

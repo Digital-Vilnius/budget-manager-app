@@ -5,7 +5,7 @@ import DashboardScreen from './Dashboard';
 import LoadingScreen from './Loading';
 import SettingsScreen from './Settings';
 import CategoriesScreen from './Categories';
-import UsersScreen from './Users';
+import AccountUsersScreen from './AccountUsers';
 import NotificationsSettingsScreen from './NotificationsSettings';
 import LanguageSettingsScreen from './LanguageSettings';
 import TagsScreen from './Tags';
@@ -20,7 +20,7 @@ export {
   LoadingScreen,
   SettingsScreen,
   CategoriesScreen,
-  UsersScreen,
+  AccountUsersScreen,
   NotificationsSettingsScreen,
   LanguageSettingsScreen,
   TagsScreen,

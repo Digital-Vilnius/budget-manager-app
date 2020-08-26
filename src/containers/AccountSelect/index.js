@@ -1,54 +1,103 @@
 import React, { useState } from 'react';
-import { ViewPropTypes } from 'react-native';
-import * as PropTypes from 'prop-types';
-import { Icon, Modal } from 'components';
-import { Container, Value, ValueContainer } from './styles';
-import { COLORS } from 'styles';
-import { AccountsService } from 'services';
-import Accounts from '../Accounts';
+import { Container, Content, Footer } from './styles';
+import { Button, List, OptionsItem } from 'components';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { SharedTypes } from 'utils';
+import { accounts as actions, account as accountActions } from 'actions';
+import { Grid } from 'styles';
 
 function AccountSelect(props) {
-  const { style, disabled, value, onChange, name } = props;
-  const [visible, setVisible] = useState(false);
+  const {
+    selectCallback,
+    selectedAccount,
+    selectAccount,
+    accounts,
+    getAccounts,
+    isLoading,
+    isRefreshing,
+    count,
+    refreshAccounts,
+    isAccountLoading,
+  } = props;
+  const [account, setAccount] = useState(selectedAccount);
 
-  const selectItem = item => {
-    setVisible(false);
-    onChange({ name, value: item });
+  const navigate = () => {
+    selectAccount(account.id, () => {
+      selectCallback();
+    });
   };
 
-  const selectedAccount = AccountsService.findAccountById(value);
+  const renderItem = item => (
+    <OptionsItem
+      selected={item.id === account?.id}
+      description={item.roles.join(', ')}
+      onPress={() => setAccount(item.id === account?.id ? null : item)}
+      key={item.id}
+      title={item.title}
+    />
+  );
 
   return (
-    <Container
-      onPress={() => setVisible(true)}
-      disabled={disabled}
-      style={style}>
-      <ValueContainer>
-        <Value>{selectedAccount?.title}</Value>
-        <Icon disabled size={18} color={COLORS.GREY} name="arrow-down" />
-      </ValueContainer>
-      <Modal
-        onClose={() => setVisible(false)}
-        title="Select account"
-        visible={visible}>
-        <Accounts onPress={selectItem} />
-      </Modal>
+    <Container>
+      <Content>
+        <List
+          isLoading={isLoading}
+          count={count}
+          getFunction={getAccounts}
+          isRefreshing={isRefreshing}
+          refreshFunction={refreshAccounts}
+          data={accounts}
+          renderItem={renderItem}
+        />
+      </Content>
+      <Footer>
+        <Grid.Row center>
+          <Button
+            isLoading={isAccountLoading}
+            disabled={!account}
+            onPress={navigate}
+            title="Select"
+          />
+        </Grid.Row>
+      </Footer>
     </Container>
   );
 }
 
 AccountSelect.propTypes = {
-  value: PropTypes.number,
-  style: ViewPropTypes.style,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
+  selectCallback: PropTypes.func.isRequired,
+  selectedAccount: SharedTypes.AccountType,
+  selectAccount: PropTypes.func.isRequired,
+  getAccounts: PropTypes.func.isRequired,
+  refreshAccounts: PropTypes.func.isRequired,
+  accounts: PropTypes.arrayOf(SharedTypes.AccountsListItemType).isRequired,
+  isRefreshing: PropTypes.bool.isRequired,
+  isAccountLoading: PropTypes.bool.isRequired,
+  count: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
-AccountSelect.defaultProps = {
-  style: {},
-  value: null,
-  disabled: false,
+function mapStateToProps(state) {
+  const { accounts, account } = state;
+  const { count, isRefreshing, isLoading } = accounts;
+  return {
+    selectedAccount: account.account,
+    accounts: accounts.accounts,
+    isLoading,
+    isAccountLoading: account.isLoading,
+    count,
+    isRefreshing,
+  };
+}
+
+const mapDispatchToProps = {
+  selectAccount: accountActions.selectAccount,
+  getAccounts: actions.getAccounts,
+  refreshAccounts: actions.refreshAccounts,
 };
 
-export default AccountSelect;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AccountSelect);

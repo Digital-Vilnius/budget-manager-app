@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Users } from 'containers';
+import { AccountUsers } from 'containers';
 import { Header } from './styles';
 import PropTypes from 'prop-types';
-import { Input, ScreenContainer } from 'components';
+import { Input, ScreenContainer, AccountUsersItem } from 'components';
 import * as _ from 'lodash';
 
-function UsersScreen(props) {
+function AccountUsersScreen(props) {
   const [filter, setFilter] = useState({});
 
   const search = ({ value }) => {
@@ -24,15 +24,18 @@ function UsersScreen(props) {
           name="keyword"
         />
       </Header>
-      <Users filter={filter} />
+      <AccountUsers
+        renderItem={item => <AccountUsersItem key={item.id} user={item} />}
+        filter={filter}
+      />
     </ScreenContainer>
   );
 }
 
-UsersScreen.propTypes = {
+AccountUsersScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default UsersScreen;
+export default AccountUsersScreen;

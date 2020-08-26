@@ -2,8 +2,14 @@ import axiosInstance from '../axiosInstance';
 import { store } from 'store';
 
 class AccountsService {
-  static async getAccounts() {
-    return axiosInstance.get('/accounts');
+  static async getAccount(id) {
+    return axiosInstance.get(`/accounts/${id}`);
+  }
+
+  static async getAccounts({ filter, paging }) {
+    return axiosInstance.get('/accounts', {
+      params: { ...filter, ...paging },
+    });
   }
 
   static findAccountById(id) {

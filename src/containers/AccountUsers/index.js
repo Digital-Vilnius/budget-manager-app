@@ -5,16 +5,16 @@ import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
 import { List } from 'components';
 import { connect } from 'react-redux';
-import { tags as actions } from 'actions';
+import { accountUsers as actions } from 'actions';
 
-function Tags(props) {
+function AccountUsers(props) {
   const {
     style,
-    tags,
+    accountUsers,
     isRefreshing,
     count,
-    getTags,
-    refreshTags,
+    getAccountUsers,
+    refreshAccountUsers,
     isLoading,
     filter,
     renderItem,
@@ -26,44 +26,49 @@ function Tags(props) {
         filter={filter}
         isLoading={isLoading}
         count={count}
-        getFunction={getTags}
+        getFunction={getAccountUsers}
         isRefreshing={isRefreshing}
-        refreshFunction={refreshTags}
-        data={tags}
+        refreshFunction={refreshAccountUsers}
+        data={accountUsers}
         renderItem={renderItem}
       />
     </Container>
   );
 }
 
-Tags.propTypes = {
-  renderItem: PropTypes.func,
+AccountUsers.propTypes = {
+  renderItem: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isRefreshing: PropTypes.bool.isRequired,
   style: ViewPropTypes.style,
   count: PropTypes.number.isRequired,
-  getTags: PropTypes.func.isRequired,
-  refreshTags: PropTypes.func.isRequired,
-  tags: PropTypes.arrayOf(SharedTypes.TagType).isRequired,
-  filter: SharedTypes.TagsFilter,
+  getAccountUsers: PropTypes.func.isRequired,
+  refreshAccountUsers: PropTypes.func.isRequired,
+  accountUsers: PropTypes.arrayOf(SharedTypes.AccountUserType).isRequired,
+  filter: SharedTypes.AccountUsersFilter,
 };
 
-Tags.defaultProps = {
+AccountUsers.defaultProps = {
   style: {},
 };
 
 function mapStateToProps(state) {
-  const { tags } = state;
-  const { count, isLoading, isRefreshing } = tags;
-  return { tags: tags.tags, isLoading, count, isRefreshing };
+  const { accountUsers } = state;
+  const { count, isLoading, isRefreshing } = accountUsers;
+  return {
+    accountUsers: accountUsers.accountUsers,
+    isLoading,
+    count,
+    isRefreshing,
+  };
 }
 
 const mapDispatchToProps = {
-  getTags: actions.getTags,
-  refreshTags: actions.refreshTags,
+  getAccountUsers: actions.getAccountUsers,
+  refreshAccountUsers: actions.refreshAccountUsers,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Tags);
+)(AccountUsers);

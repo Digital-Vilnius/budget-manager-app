@@ -3,24 +3,24 @@ import axiosInstance from '../axiosInstance';
 
 class TagsService {
   static async getTags({ filter, paging }) {
-    const accountId = store.getState().accounts.selectedAccount.id;
+    const accountId = store.getState().account.account.id;
     return axiosInstance.get(`/account/${accountId}/tags`, {
       params: { ...filter, ...paging },
     });
   }
 
   static async addTag(request) {
-    const accountId = store.getState().accounts.selectedAccount.id;
+    const accountId = store.getState().account.account.id;
     return axiosInstance.post(`/account/${accountId}/tags`, request);
   }
 
   static async editTag(request) {
-    const accountId = store.getState().accounts.selectedAccount.id;
+    const accountId = store.getState().account.account.id;
     return axiosInstance.put(`/account/${accountId}/tags`, request);
   }
 
   static async getTag(id) {
-    const accountId = store.getState().accounts.selectedAccount.id;
+    const accountId = store.getState().account.account.id;
     return axiosInstance.get(`/account/${accountId}/tags/${id}`);
   }
 

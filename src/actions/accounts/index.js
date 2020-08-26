@@ -3,7 +3,6 @@ import {
   GET_ACCOUNTS,
   GET_ACCOUNTS_ERROR,
   GET_ACCOUNTS_START,
-  SELECT_ACCOUNT,
   REFRESH_ACCOUNTS,
   REFRESH_ACCOUNTS_ERROR,
   REFRESH_ACCOUNTS_START,
@@ -38,12 +37,5 @@ export function refreshAccounts(request) {
       FlashMessagesService.showGenericError();
       dispatch({ type: REFRESH_ACCOUNTS_ERROR });
     }
-  };
-}
-
-export function selectAccount(request) {
-  return {
-    type: SELECT_ACCOUNT,
-    payload: { account: request.account },
   };
 }

@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { Container } from './styles';
 import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
-import { CategoriesItem, List } from 'components';
+import { List } from 'components';
 import { connect } from 'react-redux';
 import { categories as actions } from 'actions';
 
 function Categories(props) {
   const {
-    onPress,
-    onLongPress,
     style,
     categories,
     isRefreshing,
@@ -19,20 +17,8 @@ function Categories(props) {
     refreshCategories,
     isLoading,
     filter,
-    options,
-    selectedCategoriesIds,
+    renderItem,
   } = props;
-
-  const renderItem = item => (
-    <CategoriesItem
-      option={options}
-      checked={selectedCategoriesIds.includes(item.id)}
-      onLongPress={() => onLongPress(item)}
-      onPress={() => onPress(item)}
-      key={item.id}
-      category={item}
-    />
-  );
 
   return (
     <Container style={style}>
@@ -51,10 +37,7 @@ function Categories(props) {
 }
 
 Categories.propTypes = {
-  options: PropTypes.bool,
-  selectedCategoriesIds: PropTypes.arrayOf(PropTypes.number),
-  onLongPress: PropTypes.func,
-  onPress: PropTypes.func,
+  renderItem: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isRefreshing: PropTypes.bool.isRequired,
   style: ViewPropTypes.style,
@@ -62,28 +45,25 @@ Categories.propTypes = {
   getCategories: PropTypes.func.isRequired,
   refreshCategories: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(SharedTypes.CategoryType).isRequired,
-  filter: SharedTypes.CategoriesFilter.isRequired,
+  filter: SharedTypes.CategoriesFilter,
 };
 
 Categories.defaultProps = {
   style: {},
-  options: false,
-  selectedCategoriesIds: [],
-  onPress: () => {},
-  onLongPress: () => {},
 };
 
 function mapStateToProps(state) {
-  const {
-    categories: { categories, count, isLoading, isRefreshing },
-  } = state;
-  return { categories, isLoading, count, isRefreshing };
+  const { categories } = state;
+  const { count, isLoading, isRefreshing } = categories;
+  return { categories: categories.categories, isLoading, count, isRefreshing };
 }
+
+const mapDispatchToProps = {
+  getCategories: actions.getCategories,
+  refreshCategories: actions.refreshCategories,
+};
 
 export default connect(
   mapStateToProps,
-  {
-    getCategories: actions.getCategories,
-    refreshCategories: actions.refreshCategories,
-  },
+  mapDispatchToProps,
 )(Categories);

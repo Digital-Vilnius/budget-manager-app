@@ -2,18 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NAVIGATORS, SCREENS } from 'constants';
-import { auth as actions, accounts as accountsAction } from 'actions';
+import { auth as actions } from 'actions';
 import { ActivityIndicator } from 'react-native';
 import { SharedTypes } from 'utils';
 
 function LoadingScreen(props) {
-  const {
-    navigation,
-    isLogged,
-    getLoggedUser,
-    getAccounts,
-    selectedAccount,
-  } = props;
+  const { navigation, isLogged, getLoggedUser, selectedAccount } = props;
 
   useEffect(() => {
     if (!isLogged) {
@@ -21,15 +15,10 @@ function LoadingScreen(props) {
       return;
     }
 
-    if (!selectedAccount) {
-      navigation.replace(NAVIGATORS.AUTH, { screen: SCREENS.ACCOUNT_SELECT });
-      return;
-    }
-
     getLoggedUser(() => {
-      getAccounts(() => {
-        navigation.replace(NAVIGATORS.MAIN);
-      });
+      navigation.replace(
+        !selectedAccount ? SCREENS.ACCOUNT_SELECT : NAVIGATORS.MAIN,
+      );
     });
   });
 
@@ -42,21 +31,20 @@ LoadingScreen.propTypes = {
   }).isRequired,
   isLogged: PropTypes.bool.isRequired,
   getLoggedUser: PropTypes.func.isRequired,
-  getAccounts: PropTypes.func.isRequired,
   selectedAccount: SharedTypes.AccountType,
 };
 
 function mapStateToProps(state) {
-  const { auth, accounts } = state;
+  const { auth, account } = state;
   const { isLogged } = auth;
-  const { selectedAccount } = accounts;
-  return { isLogged, selectedAccount };
+  return { isLogged, selectedAccount: account.account };
 }
+
+const mapDispatchToProps = {
+  getLoggedUser: actions.getLoggedUser,
+};
 
 export default connect(
   mapStateToProps,
-  {
-    getLoggedUser: actions.getLoggedUser,
-    getAccounts: accountsAction.getAccounts,
-  },
+  mapDispatchToProps,
 )(LoadingScreen);

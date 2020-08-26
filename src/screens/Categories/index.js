@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Categories, CategoryForm } from 'containers';
 import { Header } from './styles';
-import { IconButton, Input, Modal, ScreenContainer } from 'components';
+import {
+  CategoriesItem,
+  IconButton,
+  Input,
+  Modal,
+  ScreenContainer,
+} from 'components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { categories as actions } from 'actions';
@@ -43,7 +49,10 @@ function CategoriesScreen(props) {
           name="keyword"
         />
       </Header>
-      <Categories filter={filter} />
+      <Categories
+        renderItem={item => <CategoriesItem key={item.id} category={item} />}
+        filter={filter}
+      />
       <Modal
         title="Add category"
         visible={addVisible}

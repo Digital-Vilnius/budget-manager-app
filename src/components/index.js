@@ -14,9 +14,8 @@ import MenuItem from './MenuItem';
 import Paging from './Paging';
 import Avatars from './Avatars';
 import CategoriesItem from './CategoriesItem';
-import AccountsItem from './AccountsItem';
 import Icon from './Icon';
-import UsersItem from './UsersItem';
+import AccountUsersItem from './AccountUsersItem';
 import SectionHeader from './SectionHeader';
 import BottomModal from './BottomModal';
 import OptionsItem from './OptionsItem';
@@ -44,9 +43,8 @@ export {
   Paging,
   Avatars,
   CategoriesItem,
-  AccountsItem,
   Icon,
-  UsersItem,
+  AccountUsersItem,
   SectionHeader,
   BottomModal,
   OptionsItem,

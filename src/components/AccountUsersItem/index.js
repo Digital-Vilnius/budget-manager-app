@@ -13,7 +13,7 @@ import { SharedTypes } from 'utils';
 import Avatar from '../Avatar';
 import PropTypes from 'prop-types';
 
-function UsersItem(props) {
+function AccountUsersItem(props) {
   const { user, style, onPress } = props;
   const { fullName, email } = user;
   const names = fullName.split(' ');
@@ -35,15 +35,15 @@ function UsersItem(props) {
   );
 }
 
-UsersItem.propTypes = {
-  user: SharedTypes.UserType.isRequired,
+AccountUsersItem.propTypes = {
+  user: SharedTypes.AccountUserType.isRequired,
   onPress: PropTypes.func,
   style: ViewPropTypes.style,
 };
 
-UsersItem.defaultProps = {
+AccountUsersItem.defaultProps = {
   style: {},
   onPress: () => {},
 };
 
-export default UsersItem;
+export default AccountUsersItem;

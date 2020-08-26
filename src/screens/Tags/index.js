@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { TagForm, Tags } from 'containers';
 import { Header } from './styles';
-import { IconButton, Input, Modal, ScreenContainer } from 'components';
+import {
+  IconButton,
+  Input,
+  Modal,
+  ScreenContainer,
+  TagsItem,
+} from 'components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
@@ -43,7 +49,10 @@ function TagsScreen(props) {
           name="keyword"
         />
       </Header>
-      <Tags filter={filter} />
+      <Tags
+        renderItem={item => <TagsItem key={item.id} tag={item} />}
+        filter={filter}
+      />
       <Modal
         title="Add tag"
         visible={addVisible}

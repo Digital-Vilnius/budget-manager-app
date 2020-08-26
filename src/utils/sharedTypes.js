@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const UserType = PropTypes.shape({
+const AccountUserType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired,
   fullName: PropTypes.string.isRequired,
@@ -12,6 +12,16 @@ const AccountType = PropTypes.shape({
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   balance: PropTypes.number.isRequired,
+  roles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  permissions: PropTypes.arrayOf(PropTypes.string).isRequired,
+});
+
+const AccountsListItemType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  balance: PropTypes.number.isRequired,
+  roles: PropTypes.arrayOf(PropTypes.string).isRequired,
 });
 
 const CategoryType = PropTypes.shape({
@@ -19,7 +29,7 @@ const CategoryType = PropTypes.shape({
   title: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
-  createdBy: UserType.isRequired,
+  createdBy: AccountUserType.isRequired,
   created: PropTypes.string.isRequired,
 });
 
@@ -28,7 +38,7 @@ const TagType = PropTypes.shape({
   title: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
-  createdBy: UserType.isRequired,
+  createdBy: AccountUserType.isRequired,
   created: PropTypes.string.isRequired,
 });
 
@@ -59,9 +69,9 @@ const TransactionType = PropTypes.shape({
   date: PropTypes.string.isRequired,
   category: CategoryType.isRequired,
   tag: TagType,
-  spentBy: UserType,
+  spentBy: AccountUserType,
   amount: PropTypes.number.isRequired,
-  createdBy: UserType.isRequired,
+  createdBy: AccountUserType.isRequired,
   description: PropTypes.string.isRequired,
 });
 
@@ -73,7 +83,7 @@ const QuickFilter = PropTypes.shape({
 export {
   TransactionType,
   CategoryType,
-  UserType,
+  AccountUserType,
   TagType,
   AccountType,
   CategoriesFilter,
@@ -81,4 +91,5 @@ export {
   AccountUsersFilter,
   QuickFilter,
   TagsFilter,
+  AccountsListItemType,
 };

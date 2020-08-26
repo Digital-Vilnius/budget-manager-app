@@ -1,22 +1,16 @@
 import styled from 'styled-components';
-import { COLORS, Typography } from 'styles';
 
-const Container = styled.TouchableOpacity`
-  width: 100%;
-  padding: 5px 0;
-  align-items: flex-start;
-  justify-content: center;
+const Container = styled.View`
+  flex: 1;
 `;
 
-const Value = styled(Typography.MediumText)`
-  color: ${COLORS.WHITE};
-  font-size: 16px;
-  margin-right: 15px;
+const Content = styled.View`
+  flex-grow: 1;
+  flex-shrink: 1;
 `;
 
-const ValueContainer = styled.View`
-  flex-direction: row;
-  align-items: center;
+const Footer = styled.View`
+  padding: 10px;
 `;
 
-export { Container, Value, ValueContainer };
+export { Container, Footer, Content };

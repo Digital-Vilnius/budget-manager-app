@@ -5,7 +5,7 @@ import SettingsNavigator from './SettingsNavigator';
 import TransactionsNavigator from './TransactionsNavigator';
 import DashboardNavigator from './DashboardNavigator';
 import CategoriesNavigator from './CategoriesNavigator';
-import UsersNavigator from './UsersNavigator';
+import AccountUsersNavigator from './UsersNavigator';
 import { Icon } from 'components';
 import { COLORS } from 'styles';
 
@@ -58,7 +58,7 @@ function MainNavigator() {
       <MainTabs.Screen
         options={USERS_OPTIONS}
         name={NAVIGATORS.USERS}
-        component={UsersNavigator}
+        component={AccountUsersNavigator}
       />
       <MainTabs.Screen
         options={SETTINGS_OPTIONS}

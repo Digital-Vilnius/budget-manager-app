@@ -2,9 +2,10 @@ import axios from 'axios';
 import promise from 'promise';
 import { store } from 'store';
 import { auth as actions } from 'actions';
+import FlashMessagesService from './flashMessages';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://efa38ab5a491.ngrok.io/api',
+  baseURL: 'https://40b95c9d3531.ngrok.io/api',
 });
 
 axiosInstance.interceptors.request.use(
@@ -27,6 +28,11 @@ axiosInstance.interceptors.response.use(
     switch (status) {
       case 401: {
         store.dispatch(actions.logout());
+        break;
+      }
+
+      case 403: {
+        FlashMessagesService.showError('Forbidden');
         break;
       }
 

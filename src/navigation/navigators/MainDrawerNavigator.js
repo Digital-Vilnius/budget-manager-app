@@ -5,7 +5,7 @@ import { NAVIGATORS } from 'constants';
 import DashboardNavigator from './DashboardNavigator';
 import TransactionsNavigator from './TransactionsNavigator';
 import CategoriesNavigator from './CategoriesNavigator';
-import UsersNavigator from './UsersNavigator';
+import AccountUsersNavigator from './UsersNavigator';
 import TagsNavigator from './TagsNavigator';
 import { DrawerContent } from 'containers';
 import { COLORS } from 'styles';
@@ -37,7 +37,7 @@ function MainDrawerNavigator() {
         component={CategoriesNavigator}
       />
       <Drawer.Screen name={NAVIGATORS.TAGS} component={TagsNavigator} />
-      <Drawer.Screen name={NAVIGATORS.USERS} component={UsersNavigator} />
+      <Drawer.Screen name={NAVIGATORS.USERS} component={AccountUsersNavigator} />
       <Drawer.Screen name={NAVIGATORS.SETTINGS} component={SettingsNavigator} />
     </Drawer.Navigator>
   );

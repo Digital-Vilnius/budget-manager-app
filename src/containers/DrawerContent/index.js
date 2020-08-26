@@ -10,28 +10,20 @@ import {
   Content,
   Footer,
   Header,
-  HeaderTitle,
   NavigationItem,
   NavigationItemText,
   Wrapper,
+  AccountSelectContainer,
+  AccountTitle,
 } from './styles';
 import { COLORS, Grid } from 'styles';
-import { IconButton } from 'components';
-import { NAVIGATORS } from 'constants';
+import { Icon, IconButton } from 'components';
+import { NAVIGATORS, SCREENS } from 'constants';
 import { SharedTypes } from 'utils';
-import { auth as actions, accounts as accountsActions } from 'actions';
-import AccountSelect from '../AccountSelect';
+import { auth as actions } from 'actions';
 
 function DrawerContent(props) {
-  const {
-    style,
-    fullName,
-    email,
-    navigation,
-    selectedAccount,
-    logout,
-    selectAccount,
-  } = props;
+  const { style, navigation, selectedAccount, logout } = props;
   const { balance } = selectedAccount;
 
   const renderNavigationItem = (onPress, label, icon) => (
@@ -41,28 +33,29 @@ function DrawerContent(props) {
     </NavigationItem>
   );
 
-  const changeAccount = ({ value }) => {
-    selectAccount({ account: value });
-  };
-
   return (
     <Container style={style}>
       <Wrapper>
         <Header>
           <Grid.Row spaceBetween>
             <Grid.Col>
-              <AccountSelect
-                value={selectedAccount.id}
-                onChange={changeAccount}
-                name="account"
-              />
+              <AccountSelectContainer
+                onPress={() => navigation.navigate(SCREENS.ACCOUNT_SELECT)}>
+                <AccountTitle>{selectedAccount.title}</AccountTitle>
+                <Icon
+                  disabled
+                  size={18}
+                  color={COLORS.GREY}
+                  name="arrow-down"
+                />
+              </AccountSelectContainer>
             </Grid.Col>
             <IconButton onPress={navigation.toggleDrawer} icon="close" />
           </Grid.Row>
         </Header>
         <BalanceContainer>
           <BalanceLabel>Balance</BalanceLabel>
-          <BalanceText>{`${balance.toFixed(2)} $`}</BalanceText>
+          <BalanceText>{`${balance?.toFixed(2)} $`}</BalanceText>
         </BalanceContainer>
         <Content bounces={false}>
           {renderNavigationItem(
@@ -121,15 +114,13 @@ DrawerContent.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  const { accounts, user } = state;
+  const { account, user } = state;
   const { fullName, email } = user;
-  const { selectedAccount } = accounts;
-  return { fullName, email, selectedAccount };
+  return { fullName, email, selectedAccount: account.account };
 }
 
 const mapDispatchToProps = {
   logout: actions.logout,
-  selectAccount: accountsActions.selectAccount,
 };
 
 export default connect(
