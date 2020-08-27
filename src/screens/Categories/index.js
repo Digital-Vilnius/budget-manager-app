@@ -10,7 +10,7 @@ import {
 } from 'components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { CategoriesActions } from 'actions';
+import { CategoryActions } from 'actions';
 import * as _ from 'lodash';
 
 function CategoriesScreen(props) {
@@ -76,13 +76,13 @@ CategoriesScreen.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { categories } = state;
-  const { isLoading } = categories;
+  const { category } = state;
+  const { isLoading } = category;
   return { isLoading };
 }
 
 const mapDispatchToProps = {
-  addCategory: CategoriesActions.addCategory,
+  addCategory: CategoryActions.addCategory,
 };
 
 export default connect(

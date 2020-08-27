@@ -3,7 +3,6 @@ import { AccountTypes, AuthTypes, TagsTypes } from 'types';
 
 const initialState = {
   tags: [],
-  tag: null,
   count: 0,
   isLoading: false,
   isRefreshing: false,
@@ -11,9 +10,6 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case TagsTypes.EDIT_TAG_START:
-    case TagsTypes.GET_TAG_START:
-    case TagsTypes.ADD_TAG_START:
     case TagsTypes.GET_TAGS_START: {
       return update(state, {
         isLoading: { $set: true },
@@ -36,26 +32,9 @@ export default (state = initialState, { type, payload }) => {
 
     case AccountTypes.SELECT_ACCOUNT:
     case AuthTypes.LOGOUT:
-    case TagsTypes.GET_TAG_ERROR:
-    case TagsTypes.EDIT_TAG_ERROR:
     case TagsTypes.REFRESH_TAGS_ERROR:
-    case TagsTypes.ADD_TAG_ERROR:
     case TagsTypes.GET_TAGS_ERROR: {
       return initialState;
-    }
-
-    case TagsTypes.EDIT_TAG:
-    case TagsTypes.ADD_TAG: {
-      return update(state, {
-        isLoading: { $set: false },
-      });
-    }
-
-    case TagsTypes.GET_TAG: {
-      return update(state, {
-        isLoading: { $set: false },
-        tag: { $set: payload.tag },
-      });
     }
 
     case TagsTypes.GET_TAGS: {

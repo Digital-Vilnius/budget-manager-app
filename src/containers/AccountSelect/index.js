@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SharedTypes } from 'utils';
 import { AccountsActions, AccountActions } from 'actions';
-import { Grid } from 'styles';
+import { BUTTONS, Grid } from 'styles';
 
 function AccountSelect(props) {
   const {
@@ -19,6 +19,7 @@ function AccountSelect(props) {
     count,
     refreshAccounts,
     isAccountLoading,
+    onCancel,
   } = props;
   const [account, setAccount] = useState(selectedAccount);
 
@@ -52,12 +53,20 @@ function AccountSelect(props) {
         />
       </Content>
       <Footer>
-        <Grid.Row center>
+        <Grid.Row mb={10} center>
           <Button
             isLoading={isAccountLoading}
             disabled={!account}
             onPress={navigate}
             title="Select"
+          />
+        </Grid.Row>
+        <Grid.Row center>
+          <Button
+            outline
+            type={BUTTONS.SECONDARY}
+            onPress={onCancel}
+            title="Cancel"
           />
         </Grid.Row>
       </Footer>
@@ -67,6 +76,7 @@ function AccountSelect(props) {
 
 AccountSelect.propTypes = {
   selectCallback: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
   selectedAccount: SharedTypes.AccountType,
   selectAccount: PropTypes.func.isRequired,
   getAccounts: PropTypes.func.isRequired,

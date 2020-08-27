@@ -4,7 +4,7 @@ import { ViewPropTypes } from 'react-native';
 import { connect } from 'react-redux';
 import {
   BalanceContainer,
-  BalanceLabel,
+  DescriptionLabel,
   BalanceText,
   Container,
   Content,
@@ -15,16 +15,18 @@ import {
   Wrapper,
   AccountSelectContainer,
   AccountTitle,
+  FullNameText,
+  BalanceLabel,
 } from './styles';
 import { COLORS, Grid } from 'styles';
-import { Icon, IconButton } from 'components';
+import { Avatar, Icon, IconButton } from 'components';
 import { NAVIGATORS, SCREENS } from 'constants';
 import { SharedTypes } from 'utils';
 import { AuthActions } from 'actions';
 
 function DrawerContent(props) {
-  const { style, navigation, selectedAccount, logout } = props;
-  const { balance } = selectedAccount;
+  const { style, navigation, selectedAccount, logout, user } = props;
+  const { email, fullName } = user;
 
   const renderNavigationItem = (onPress, label, icon) => (
     <NavigationItem onPress={onPress}>
@@ -37,11 +39,14 @@ function DrawerContent(props) {
     <Container style={style}>
       <Wrapper>
         <Header>
-          <Grid.Row spaceBetween>
+          <Grid.Row mb={25} spaceBetween>
             <Grid.Col>
               <AccountSelectContainer
                 onPress={() => navigation.navigate(SCREENS.ACCOUNT_SELECT)}>
-                <AccountTitle>{selectedAccount.title}</AccountTitle>
+                <Grid.Col mr={25}>
+                  <AccountTitle>{selectedAccount.title}</AccountTitle>
+                  <DescriptionLabel>{selectedAccount.type}</DescriptionLabel>
+                </Grid.Col>
                 <Icon
                   disabled
                   size={18}
@@ -52,10 +57,23 @@ function DrawerContent(props) {
             </Grid.Col>
             <IconButton onPress={navigation.toggleDrawer} icon="close" />
           </Grid.Row>
+          <Grid.Row>
+            <Grid.Col mr={15}>
+              <Avatar
+                placeholderColor={COLORS.PURPLE}
+                size={45}
+                placeholder={email.substring(0, 2)}
+              />
+            </Grid.Col>
+            <Grid.Col>
+              <FullNameText>{fullName}</FullNameText>
+              <DescriptionLabel>{selectedAccount.roles[0]}</DescriptionLabel>
+            </Grid.Col>
+          </Grid.Row>
         </Header>
         <BalanceContainer>
           <BalanceLabel>Balance</BalanceLabel>
-          <BalanceText>{`${balance?.toFixed(2)} $`}</BalanceText>
+          <BalanceText>{`${selectedAccount.balance.toFixed(2)} $`}</BalanceText>
         </BalanceContainer>
         <Content bounces={false}>
           {renderNavigationItem(
@@ -103,8 +121,7 @@ DrawerContent.propTypes = {
     navigate: PropTypes.func.isRequired,
     closeDrawer: PropTypes.func.isRequired,
   }).isRequired,
-  fullName: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
+  user: SharedTypes.LoggedUserType.isRequired,
   selectedAccount: SharedTypes.AccountType.isRequired,
   logout: PropTypes.func.isRequired,
 };
@@ -114,9 +131,9 @@ DrawerContent.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  const { account, user } = state;
-  const { fullName, email } = user;
-  return { fullName, email, selectedAccount: account.account };
+  const { account, auth } = state;
+  const { user } = auth;
+  return { user, selectedAccount: account.account };
 }
 
 const mapDispatchToProps = {

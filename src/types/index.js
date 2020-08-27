@@ -3,9 +3,11 @@ import * as AccountsTypes from './accounts';
 import * as AccountUsersTypes from './accountUsers';
 import * as AuthTypes from './auth';
 import * as CategoriesTypes from './categories';
+import * as CategoryTypes from './category';
 import * as TagsTypes from './tags';
+import * as TagTypes from './tag';
 import * as TransactionsTypes from './transactions';
-import * as UserTypes from './user';
+import * as TransactionTypes from './transaction';
 
 export {
   AccountsTypes,
@@ -15,5 +17,7 @@ export {
   CategoriesTypes,
   TagsTypes,
   TransactionsTypes,
-  UserTypes,
+  CategoryTypes,
+  TagTypes,
+  TransactionTypes,
 };

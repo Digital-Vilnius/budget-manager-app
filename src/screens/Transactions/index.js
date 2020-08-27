@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import { Grid } from 'styles';
 import { Header } from './styles';
 import * as _ from 'lodash';
-import { TransactionsActions } from 'actions';
+import { TransactionActions } from 'actions';
 
 function TransactionsScreen(props) {
   const { navigation, isLoading, addTransaction } = props;
@@ -118,13 +118,13 @@ TransactionsScreen.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { transactions } = state;
-  const { isLoading } = transactions;
+  const { transaction } = state;
+  const { isLoading } = transaction;
   return { isLoading };
 }
 
 const mapDispatchToProps = {
-  addTransaction: TransactionsActions.addTransaction,
+  addTransaction: TransactionActions.addTransaction,
 };
 
 export default connect(

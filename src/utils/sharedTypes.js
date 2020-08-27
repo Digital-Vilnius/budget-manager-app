@@ -7,6 +7,14 @@ const AccountUserType = PropTypes.shape({
   created: PropTypes.string.isRequired,
 });
 
+const LoggedUserType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  email: PropTypes.string.isRequired,
+  fullName: PropTypes.string.isRequired,
+  locale: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+});
+
 const AccountType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
@@ -92,4 +100,5 @@ export {
   QuickFilter,
   TagsFilter,
   AccountsListItemType,
+  LoggedUserType,
 };

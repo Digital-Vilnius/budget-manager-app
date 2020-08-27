@@ -7,20 +7,26 @@ import {
   HeaderTitle,
 } from './styles';
 import { Avatar, MenuItem, Separator } from 'components';
-import { Grid } from 'styles';
+import { COLORS, Grid } from 'styles';
 import { connect } from 'react-redux';
 import { AuthActions as actions } from 'actions';
 import PropTypes from 'prop-types';
 import { SCREENS } from 'constants';
+import { SharedTypes } from 'utils';
 
 function SettingsScreen(props) {
-  const { logout, fullName, email, navigation } = props;
+  const { logout, user, navigation } = props;
+  const { email, fullName } = user;
 
   return (
     <Container>
       <Header>
         <Grid.Row mb={20} center>
-          <Avatar size={70} />
+          <Avatar
+            placeholderColor={COLORS.PURPLE}
+            placeholder={email.substring(0, 2)}
+            size={70}
+          />
         </Grid.Row>
         <Grid.Row mb={5} center>
           <HeaderTitle>{fullName}</HeaderTitle>
@@ -76,17 +82,16 @@ function SettingsScreen(props) {
 
 SettingsScreen.propTypes = {
   logout: PropTypes.func.isRequired,
-  email: PropTypes.string,
-  fullName: PropTypes.string,
+  user: SharedTypes.LoggedUserType.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
 
 function mapStateToProps(state) {
-  const { user } = state;
-  const { email, fullName } = user;
-  return { email, fullName };
+  const { auth, account } = state;
+  const { user } = auth;
+  return { user, roles: account.account.roles };
 }
 
 const mapDispatchToProps = {

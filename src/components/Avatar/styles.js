@@ -13,7 +13,7 @@ const Placeholder = styled.View`
   justify-content: center;
   height: ${props => props.size - 2}px;
   border-radius: ${props => (props.size - 2) / 2}px;
-  background-color: ${COLORS.PRIMARY};
+  background-color: ${props => props.color};
 `;
 
 const PlaceholderText = styled(Typography.BoldText)`

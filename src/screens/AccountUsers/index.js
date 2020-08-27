@@ -18,6 +18,7 @@ function AccountUsersScreen(props) {
     <ScreenContainer>
       <Header>
         <Input
+          dark
           leftIcon="search"
           placeholder="Search by keyword"
           onChange={onSearchChange}
@@ -25,7 +26,9 @@ function AccountUsersScreen(props) {
         />
       </Header>
       <AccountUsers
-        renderItem={item => <AccountUsersItem key={item.id} user={item} />}
+        renderItem={item => (
+          <AccountUsersItem key={item.id} accountUser={item} />
+        )}
         filter={filter}
       />
     </ScreenContainer>

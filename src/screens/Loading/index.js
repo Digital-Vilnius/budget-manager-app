@@ -2,18 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NAVIGATORS, SCREENS } from 'constants';
-import { AuthActions, UserActions } from 'actions';
+import { AuthActions } from 'actions';
 import { ActivityIndicator } from 'react-native';
 import { SharedTypes } from 'utils';
 
 function LoadingScreen(props) {
-  const {
-    navigation,
-    isLogged,
-    getLoggedUser,
-    selectedAccount,
-    getUser,
-  } = props;
+  const { navigation, isLogged, getLoggedUser, selectedAccount } = props;
 
   useEffect(() => {
     if (!isLogged) {
@@ -22,11 +16,9 @@ function LoadingScreen(props) {
     }
 
     getLoggedUser(() => {
-      getUser(() => {
-        navigation.replace(
-          !selectedAccount ? SCREENS.ACCOUNT_SELECT : NAVIGATORS.MAIN,
-        );
-      });
+      navigation.replace(
+        !selectedAccount ? SCREENS.ACCOUNT_SELECT : NAVIGATORS.MAIN,
+      );
     });
   });
 
@@ -50,7 +42,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   getLoggedUser: AuthActions.getLoggedUser,
-  getUser: UserActions.getUser,
 };
 
 export default connect(

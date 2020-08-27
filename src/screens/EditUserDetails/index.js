@@ -3,22 +3,14 @@ import { Container } from './styles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { UserDetailsForm } from 'containers';
-import { UserActions } from 'actions';
+import { AuthActions } from 'actions';
 
 function EditUserDetailsScreen(props) {
-  const {
-    navigation,
-    formData,
-    isLoading,
-    updateUserDetails,
-    getUser,
-  } = props;
+  const { navigation, formData, isLoading, updateLoggedUser } = props;
 
   const save = data => {
-    updateUserDetails(data, () => {
-      getUser(() => {
-        navigation.goBack();
-      });
+    updateLoggedUser(data, () => {
+      navigation.goBack();
     });
   };
 
@@ -42,21 +34,20 @@ EditUserDetailsScreen.propTypes = {
   navigation: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
   }).isRequired,
-  updateUserDetails: PropTypes.func.isRequired,
-  getUser: PropTypes.func.isRequired,
+  updateLoggedUser: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
   const { auth } = state;
-  const { email, fullName, isLoading } = auth;
+  const { user, isLoading } = auth;
+  const { email, fullName } = user;
   const formData = { email, fullName };
   return { formData, isLoading };
 }
 
 const mapDispatchToProps = {
-  updateUserDetails: UserActions.updateUserDetails,
-  getUser: UserActions.getUser,
+  updateLoggedUser: AuthActions.updateLoggedUser,
 };
 
 export default connect(

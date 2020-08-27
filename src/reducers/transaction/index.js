@@ -1,28 +1,27 @@
 import update from 'immutability-helper';
-import { AccountTypes, AuthTypes } from 'types';
+import { AccountTypes, AuthTypes, TransactionTypes } from 'types';
 
 const initialState = {
-  account: null,
   isLoading: false,
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case AccountTypes.SELECT_ACCOUNT_START: {
+    case TransactionTypes.ADD_TRANSACTION_START: {
       return update(state, {
         isLoading: { $set: true },
       });
     }
 
+    case AccountTypes.SELECT_ACCOUNT:
     case AuthTypes.LOGOUT:
-    case AccountTypes.SELECT_ACCOUNT_ERROR: {
+    case TransactionTypes.ADD_TRANSACTION_ERROR: {
       return initialState;
     }
 
-    case AccountTypes.SELECT_ACCOUNT: {
+    case TransactionTypes.ADD_TRANSACTION: {
       return update(state, {
         isLoading: { $set: false },
-        account: { $set: payload.account },
       });
     }
 

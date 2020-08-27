@@ -21,12 +21,6 @@ const Description = styled(Typography.RegularText)`
   color: ${COLORS.GREY};
 `;
 
-const AmountText = styled(Typography.MediumText)`
-  font-size: 14px;
-  margin-bottom: 2px;
-  color: ${COLORS.DARK_BLUE};
-`;
-
 const LeftSection = styled.View`
   flex-direction: row;
   align-items: stretch;
@@ -52,5 +46,4 @@ export {
   RightSection,
   Details,
   Description,
-  AmountText,
 };

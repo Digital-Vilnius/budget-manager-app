@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Footer } from './styles';
 import { Button, Modal, OptionsItem } from 'components';
 import PropTypes from 'prop-types';
-import { Form, Grid } from 'styles';
+import { BUTTONS, Form, Grid } from 'styles';
 import { ViewPropTypes } from 'react-native';
 import { CategoriesService } from 'services';
 import Categories from '../Categories';
@@ -52,8 +52,16 @@ function CategorySelect(props) {
         visible={visible}>
         <Categories renderItem={renderItem} />
         <Footer>
-          <Grid.Row center>
+          <Grid.Row center mb={10}>
             <Button disabled={!category} onPress={select} title="Select" />
+          </Grid.Row>
+          <Grid.Row>
+            <Button
+              type={BUTTONS.SECONDARY}
+              outline
+              title="Cancel"
+              onPress={() => setVisible(false)}
+            />
           </Grid.Row>
         </Footer>
       </Modal>

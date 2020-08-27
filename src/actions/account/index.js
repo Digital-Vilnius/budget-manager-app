@@ -1,7 +1,7 @@
 import { AccountsService, FlashMessagesService } from 'services';
 import { AccountTypes } from 'types';
 
-export function selectAccount(id, callback) {
+export function selectAccount(id, callback = null) {
   return async dispatch => {
     try {
       dispatch({ type: AccountTypes.SELECT_ACCOUNT_START });
@@ -10,7 +10,9 @@ export function selectAccount(id, callback) {
         type: AccountTypes.SELECT_ACCOUNT,
         payload: { account: result },
       });
-      callback();
+      if (callback) {
+        callback();
+      }
     } catch (exception) {
       FlashMessagesService.showGenericError();
       dispatch({ type: AccountTypes.SELECT_ACCOUNT_ERROR });

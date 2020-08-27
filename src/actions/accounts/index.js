@@ -27,6 +27,7 @@ export function refreshAccounts(request) {
         payload: { accounts: result, count },
       });
     } catch (exception) {
+      console.log(exception);
       FlashMessagesService.showGenericError();
       dispatch({ type: AccountsTypes.REFRESH_ACCOUNTS_ERROR });
     }

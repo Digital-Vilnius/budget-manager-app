@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
-import { TagsActions } from 'actions';
+import { TagActions } from 'actions';
 
 function TagsScreen(props) {
   const { navigation, addTag, isLoading } = props;
@@ -76,13 +76,13 @@ TagsScreen.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { tags } = state;
-  const { isLoading } = tags;
+  const { tag } = state;
+  const { isLoading } = tag;
   return { isLoading };
 }
 
 const mapDispatchToProps = {
-  addTag: TagsActions.addTag,
+  addTag: TagActions.addTag,
 };
 
 export default connect(

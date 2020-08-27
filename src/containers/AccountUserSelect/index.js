@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Footer } from './styles';
 import { Button, Modal, OptionsItem } from 'components';
 import PropTypes from 'prop-types';
-import { Form, Grid } from 'styles';
+import {BUTTONS, Form, Grid} from 'styles';
 import { ViewPropTypes } from 'react-native';
 import { AccountUsersService } from 'services';
 import AccountUsers from '../AccountUsers';
@@ -48,12 +48,20 @@ function AccountUserSelect(props) {
       </Form.Select>
       <Modal
         onClose={() => setVisible(false)}
-        title="Select category"
+        title="Select user"
         visible={visible}>
         <AccountUsers renderItem={renderItem} />
         <Footer>
-          <Grid.Row center>
+          <Grid.Row mb={10} center>
             <Button disabled={!accountUser} onPress={select} title="Select" />
+          </Grid.Row>
+          <Grid.Row>
+            <Button
+              type={BUTTONS.SECONDARY}
+              outline
+              title="Cancel"
+              onPress={() => setVisible(false)}
+            />
           </Grid.Row>
         </Footer>
       </Modal>

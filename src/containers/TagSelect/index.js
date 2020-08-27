@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Footer } from './styles';
 import { Button, Modal, OptionsItem } from 'components';
 import PropTypes from 'prop-types';
-import { Form, Grid } from 'styles';
+import {BUTTONS, Form, Grid} from 'styles';
 import { ViewPropTypes } from 'react-native';
 import { TagsService } from 'services';
 import Tags from '../Tags';
@@ -48,12 +48,20 @@ function TagSelect(props) {
       </Form.Select>
       <Modal
         onClose={() => setVisible(false)}
-        title="Select category"
+        title="Select tag"
         visible={visible}>
         <Tags renderItem={renderItem} />
         <Footer>
-          <Grid.Row center>
+          <Grid.Row mb={10} center>
             <Button disabled={!tag} onPress={select} title="Select" />
+          </Grid.Row>
+          <Grid.Row>
+            <Button
+              type={BUTTONS.SECONDARY}
+              outline
+              title="Cancel"
+              onPress={() => setVisible(false)}
+            />
           </Grid.Row>
         </Footer>
       </Modal>

@@ -34,17 +34,3 @@ export function refreshTransactions(request) {
     }
   };
 }
-
-export function addTransaction(request, callback) {
-  return async dispatch => {
-    try {
-      dispatch({ type: TransactionsTypes.ADD_TRANSACTION_START });
-      await TransactionsService.addTransaction(request);
-      dispatch({ type: TransactionsTypes.ADD_TRANSACTION });
-      callback();
-    } catch (exception) {
-      FlashMessagesService.showGenericError();
-      dispatch({ type: TransactionsTypes.ADD_TRANSACTION_ERROR });
-    }
-  };
-}

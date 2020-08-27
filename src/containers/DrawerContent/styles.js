@@ -17,16 +17,11 @@ const AccountSelectContainer = styled.TouchableOpacity`
 const AccountTitle = styled(Typography.MediumText)`
   color: ${COLORS.WHITE};
   font-size: 16px;
-  margin-right: 15px;
+  margin-bottom: 2px;
 `;
 
 const Content = styled.ScrollView`
   padding: 10px;
-`;
-
-const HeaderTitle = styled(Typography.BoldText)`
-  color: ${COLORS.WHITE};
-  font-size: 16px;
 `;
 
 const Header = styled.View`
@@ -43,15 +38,26 @@ const BalanceContainer = styled.View`
   border-bottom-color: ${COLORS.LIGHT_BORDER};
 `;
 
+const DescriptionLabel = styled(Typography.RegularText)`
+  font-size: 13px;
+  color: ${COLORS.GREY};
+`;
+
 const BalanceLabel = styled(Typography.RegularText)`
   font-size: 12px;
-  text-transform: uppercase;
   color: ${COLORS.GREY};
-  margin-bottom: 5px;
+  text-transform: uppercase;
 `;
 
 const BalanceText = styled(Typography.BoldText)`
   font-size: 25px;
+  margin-top: 5px;
+  color: ${COLORS.WHITE};
+`;
+
+const FullNameText = styled(Typography.BoldText)`
+  font-size: 14px;
+  margin-bottom: 3px;
   color: ${COLORS.WHITE};
 `;
 
@@ -82,13 +88,14 @@ export {
   Content,
   Header,
   Wrapper,
-  HeaderTitle,
   NavigationItem,
   NavigationItemText,
   BalanceContainer,
-  BalanceLabel,
+  DescriptionLabel,
   BalanceText,
   Footer,
   AccountSelectContainer,
   AccountTitle,
+  FullNameText,
+  BalanceLabel,
 };
