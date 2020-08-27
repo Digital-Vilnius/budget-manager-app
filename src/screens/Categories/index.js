@@ -12,19 +12,25 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CategoryActions } from 'actions';
 import * as _ from 'lodash';
+import { SharedTypes } from 'utils';
+import { Permissions } from 'constants';
 
 function CategoriesScreen(props) {
-  const { navigation, addCategory, isLoading } = props;
+  const { navigation, addCategory, isLoading, selectedAccount } = props;
+  const { permissions } = selectedAccount;
   const [addVisible, setAddVisible] = useState(false);
   const [filter, setFilter] = useState({});
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        <IconButton onPress={() => setAddVisible(true)} icon="add" />
-      ),
+      headerRight: () => {
+        if (permissions.includes(Permissions.CATEGORIES.ADD)) {
+          return <IconButton onPress={() => setAddVisible(true)} icon="add" />;
+        }
+        return null;
+      },
     });
-  }, [navigation]);
+  }, [navigation, permissions]);
 
   const search = ({ value }) => {
     setFilter({ ...filter, keyword: value });
@@ -73,12 +79,13 @@ CategoriesScreen.propTypes = {
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   addCategory: PropTypes.func.isRequired,
+  selectedAccount: SharedTypes.AccountType.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { category } = state;
+  const { category, account } = state;
   const { isLoading } = category;
-  return { isLoading };
+  return { isLoading, selectedAccount: account.account };
 }
 
 const mapDispatchToProps = {

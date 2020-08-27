@@ -17,9 +17,12 @@ import { Grid } from 'styles';
 import { Header } from './styles';
 import * as _ from 'lodash';
 import { TransactionActions } from 'actions';
+import { SharedTypes } from 'utils';
+import { Permissions } from 'constants';
 
 function TransactionsScreen(props) {
-  const { navigation, isLoading, addTransaction } = props;
+  const { navigation, isLoading, addTransaction, selectedAccount } = props;
+  const { permissions } = selectedAccount;
   const [addVisible, setAddVisible] = useState(false);
   const [filterVisible, setFilterVisible] = useState(false);
   const [filter, setFilter] = useState({});
@@ -28,27 +31,31 @@ function TransactionsScreen(props) {
   useEffect(() => {
     const filtersCount = Object.keys(filter).filter(key => filter[key]).length;
     navigation.setOptions({
-      headerRight: () => (
-        <Grid.Row>
-          <Grid.Col>
-            <IconButton
-              onPress={() => setFilterVisible(true)}
-              iconSize={24}
-              icon="options"
-              badgeCount={filtersCount}
-            />
-          </Grid.Col>
-          <Grid.Col ml={10}>
-            <IconButton
-              onPress={() => setAddVisible(true)}
-              iconSize={24}
-              icon="add"
-            />
-          </Grid.Col>
-        </Grid.Row>
-      ),
+      headerRight: () => {
+        return (
+          <Grid.Row>
+            <Grid.Col>
+              <IconButton
+                onPress={() => setFilterVisible(true)}
+                iconSize={24}
+                icon="options"
+                badgeCount={filtersCount}
+              />
+            </Grid.Col>
+            {permissions.includes(Permissions.TRANSACTIONS.ADD) && (
+              <Grid.Col ml={10}>
+                <IconButton
+                  onPress={() => setAddVisible(true)}
+                  iconSize={24}
+                  icon="add"
+                />
+              </Grid.Col>
+            )}
+          </Grid.Row>
+        );
+      },
     });
-  }, [filter, navigation]);
+  }, [filter, navigation, permissions]);
 
   const onSearch = ({ value }) => {
     setKeyword(value);
@@ -115,12 +122,13 @@ TransactionsScreen.propTypes = {
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   addTransaction: PropTypes.func.isRequired,
+  selectedAccount: SharedTypes.AccountType.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { transaction } = state;
+  const { transaction, account } = state;
   const { isLoading } = transaction;
-  return { isLoading };
+  return { isLoading, selectedAccount: account.account };
 }
 
 const mapDispatchToProps = {

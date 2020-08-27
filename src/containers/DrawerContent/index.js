@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';
 import { connect } from 'react-redux';
@@ -19,14 +19,17 @@ import {
   BalanceLabel,
 } from './styles';
 import { COLORS, Grid } from 'styles';
-import { Avatar, Icon, IconButton } from 'components';
-import { NAVIGATORS, SCREENS } from 'constants';
+import { Avatar, Icon, IconButton, Modal } from 'components';
+import { NAVIGATORS, Permissions } from 'constants';
 import { SharedTypes } from 'utils';
 import { AuthActions } from 'actions';
+import AccountSelect from '../AccountSelect';
 
 function DrawerContent(props) {
   const { style, navigation, selectedAccount, logout, user } = props;
   const { email, fullName } = user;
+  const { balance, roles, title, type, permissions } = selectedAccount;
+  const [accountModalVisible, setAccountModalVisible] = useState(false);
 
   const renderNavigationItem = (onPress, label, icon) => (
     <NavigationItem onPress={onPress}>
@@ -42,10 +45,10 @@ function DrawerContent(props) {
           <Grid.Row mb={25} spaceBetween>
             <Grid.Col>
               <AccountSelectContainer
-                onPress={() => navigation.navigate(SCREENS.ACCOUNT_SELECT)}>
+                onPress={() => setAccountModalVisible(true)}>
                 <Grid.Col mr={25}>
-                  <AccountTitle>{selectedAccount.title}</AccountTitle>
-                  <DescriptionLabel>{selectedAccount.type}</DescriptionLabel>
+                  <AccountTitle>{title}</AccountTitle>
+                  <DescriptionLabel>{type}</DescriptionLabel>
                 </Grid.Col>
                 <Icon
                   disabled
@@ -67,13 +70,13 @@ function DrawerContent(props) {
             </Grid.Col>
             <Grid.Col>
               <FullNameText>{fullName}</FullNameText>
-              <DescriptionLabel>{selectedAccount.roles[0]}</DescriptionLabel>
+              <DescriptionLabel>{roles[0]}</DescriptionLabel>
             </Grid.Col>
           </Grid.Row>
         </Header>
         <BalanceContainer>
           <BalanceLabel>Balance</BalanceLabel>
-          <BalanceText>{`${selectedAccount.balance.toFixed(2)} $`}</BalanceText>
+          <BalanceText>{`${balance.toFixed(2)} $`}</BalanceText>
         </BalanceContainer>
         <Content bounces={false}>
           {renderNavigationItem(
@@ -81,26 +84,30 @@ function DrawerContent(props) {
             'Dashboard',
             'stats',
           )}
-          {renderNavigationItem(
-            () => navigation.navigate(NAVIGATORS.TRANSACTIONS),
-            'History',
-            'time',
-          )}
-          {renderNavigationItem(
-            () => navigation.navigate(NAVIGATORS.CATEGORIES),
-            'Categories',
-            'keypad',
-          )}
-          {renderNavigationItem(
-            () => navigation.navigate(NAVIGATORS.TAGS),
-            'Tags',
-            'bookmark',
-          )}
-          {renderNavigationItem(
-            () => navigation.navigate(NAVIGATORS.USERS),
-            'Users',
-            'people',
-          )}
+          {permissions.includes(Permissions.CATEGORIES.VIEW) &&
+            renderNavigationItem(
+              () => navigation.navigate(NAVIGATORS.TRANSACTIONS),
+              'History',
+              'time',
+            )}
+          {permissions.includes(Permissions.CATEGORIES.VIEW) &&
+            renderNavigationItem(
+              () => navigation.navigate(NAVIGATORS.CATEGORIES),
+              'Categories',
+              'keypad',
+            )}
+          {permissions.includes(Permissions.TAGS.VIEW) &&
+            renderNavigationItem(
+              () => navigation.navigate(NAVIGATORS.TAGS),
+              'Tags',
+              'bookmark',
+            )}
+          {permissions.includes(Permissions.ACCOUNT_USERS.VIEW) &&
+            renderNavigationItem(
+              () => navigation.navigate(NAVIGATORS.USERS),
+              'Users',
+              'people',
+            )}
         </Content>
         <Footer>
           {renderNavigationItem(
@@ -111,6 +118,15 @@ function DrawerContent(props) {
           {renderNavigationItem(logout, 'Logout', 'log-out')}
         </Footer>
       </Wrapper>
+      <Modal
+        title="Select account"
+        visible={accountModalVisible}
+        onClose={() => setAccountModalVisible(false)}>
+        <AccountSelect
+          selectCallback={() => setAccountModalVisible(false)}
+          onCancel={() => setAccountModalVisible(false)}
+        />
+      </Modal>
     </Container>
   );
 }

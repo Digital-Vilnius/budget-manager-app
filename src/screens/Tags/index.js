@@ -12,19 +12,25 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
 import { TagActions } from 'actions';
+import { SharedTypes } from 'utils';
+import { Permissions } from 'constants';
 
 function TagsScreen(props) {
-  const { navigation, addTag, isLoading } = props;
+  const { navigation, addTag, isLoading, selectedAccount } = props;
+  const { permissions } = selectedAccount;
   const [addVisible, setAddVisible] = useState(false);
   const [filter, setFilter] = useState({});
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        <IconButton onPress={() => setAddVisible(true)} icon="add" />
-      ),
+      headerRight: () => {
+        if (permissions.includes(Permissions.TAGS.ADD)) {
+          return <IconButton onPress={() => setAddVisible(true)} icon="add" />;
+        }
+        return null;
+      },
     });
-  }, [navigation]);
+  }, [navigation, permissions]);
 
   const search = ({ value }) => {
     setFilter({ ...filter, keyword: value });
@@ -73,12 +79,13 @@ TagsScreen.propTypes = {
   }).isRequired,
   addTag: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  selectedAccount: SharedTypes.AccountType.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { tag } = state;
+  const { tag, account } = state;
   const { isLoading } = tag;
-  return { isLoading };
+  return { isLoading, selectedAccount: account.account };
 }
 
 const mapDispatchToProps = {
