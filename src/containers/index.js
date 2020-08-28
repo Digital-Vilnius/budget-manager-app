@@ -15,6 +15,8 @@ import TransactionsFilterForm from './TransactionsFilterForm';
 import UserSelect from './AccountUserSelect';
 import DrawerContent from './DrawerContent';
 import UserDetailsForm from './UserDetailsForm';
+import Invitations from './Invitations';
+import InvitationForm from './InvitationForm';
 
 export {
   Transactions,
@@ -34,4 +36,6 @@ export {
   UserSelect,
   DrawerContent,
   UserDetailsForm,
+  Invitations,
+  InvitationForm,
 };

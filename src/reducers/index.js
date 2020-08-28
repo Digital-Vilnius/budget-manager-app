@@ -9,6 +9,8 @@ import accountUsers from './accountUsers';
 import category from './category';
 import tags from './tags';
 import tag from './tag';
+import invitation from './invitation';
+import invitations from './invitations';
 
 const rootReducer = combineReducers({
   auth,
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   tag,
   account,
   category,
+  invitation,
+  invitations,
 });
 
 export { rootReducer };

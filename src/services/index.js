@@ -5,6 +5,7 @@ import AuthService from './auth';
 import AccountsService from './accounts';
 import AccountUsersService from './accountUsers';
 import TagsService from './tags';
+import InvitationsService from './invitations';
 import * as NavigationService from './navigation';
 
 export {
@@ -16,4 +17,5 @@ export {
   AccountUsersService,
   NavigationService,
   TagsService,
+  InvitationsService,
 };

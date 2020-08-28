@@ -8,6 +8,8 @@ import * as AuthActions from './auth';
 import * as AccountsActions from './accounts';
 import * as AccountActions from './account';
 import * as AccountUsersActions from './accountUsers';
+import * as InvitationActions from './invitation';
+import * as InvitationsActions from './invitations';
 
 export {
   TransactionsActions,
@@ -20,4 +22,6 @@ export {
   AccountActions,
   CategoryActions,
   TagActions,
+  InvitationActions,
+  InvitationsActions,
 };

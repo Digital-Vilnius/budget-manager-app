@@ -108,6 +108,12 @@ function DrawerContent(props) {
               'Users',
               'people',
             )}
+          {permissions.includes(Permissions.INVITATIONS.VIEW) &&
+            renderNavigationItem(
+              () => navigation.navigate(NAVIGATORS.INVITATIONS),
+              'Invitations',
+              'mail',
+            )}
         </Content>
         <Footer>
           {renderNavigationItem(

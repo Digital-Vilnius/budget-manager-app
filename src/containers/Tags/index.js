@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container } from './styles';
 import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
-import { List } from 'components';
+import { List, TagsItem } from 'components';
 import { connect } from 'react-redux';
 import { TagsActions } from 'actions';
 
@@ -50,6 +50,7 @@ Tags.propTypes = {
 
 Tags.defaultProps = {
   style: {},
+  renderItem: item => <TagsItem key={item.id} tag={item} />,
 };
 
 function mapStateToProps(state) {

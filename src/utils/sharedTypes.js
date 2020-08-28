@@ -50,6 +50,17 @@ const TagType = PropTypes.shape({
   created: PropTypes.string.isRequired,
 });
 
+const InvitationType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  email: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+});
+
+const InvitationsFilter = PropTypes.shape({
+  keyword: PropTypes.string,
+});
+
 const CategoriesFilter = PropTypes.shape({
   keyword: PropTypes.string,
 });
@@ -101,4 +112,6 @@ export {
   TagsFilter,
   AccountsListItemType,
   LoggedUserType,
+  InvitationType,
+  InvitationsFilter
 };

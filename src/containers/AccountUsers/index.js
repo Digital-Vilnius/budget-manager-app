@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container } from './styles';
 import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
-import { List } from 'components';
+import { AccountUsersItem, List } from 'components';
 import { connect } from 'react-redux';
 import { AccountUsersActions } from 'actions';
 
@@ -50,6 +50,7 @@ AccountUsers.propTypes = {
 
 AccountUsers.defaultProps = {
   style: {},
+  renderItem: item => <AccountUsersItem key={item.id} accountUser={item} />,
 };
 
 function mapStateToProps(state) {

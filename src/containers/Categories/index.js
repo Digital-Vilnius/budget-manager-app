@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container } from './styles';
 import { SharedTypes } from 'utils';
 import { ViewPropTypes } from 'react-native';
-import { List } from 'components';
+import { CategoriesItem, List } from 'components';
 import { connect } from 'react-redux';
 import { CategoriesActions } from 'actions';
 
@@ -50,6 +50,7 @@ Categories.propTypes = {
 
 Categories.defaultProps = {
   style: {},
+  renderItem: item => <CategoriesItem key={item.id} category={item} />,
 };
 
 function mapStateToProps(state) {

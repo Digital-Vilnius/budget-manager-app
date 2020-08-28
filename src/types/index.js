@@ -8,6 +8,8 @@ import * as TagsTypes from './tags';
 import * as TagTypes from './tag';
 import * as TransactionsTypes from './transactions';
 import * as TransactionTypes from './transaction';
+import * as InvitationsTypes from './invitations';
+import * as InvitationTypes from './invitation';
 
 export {
   AccountsTypes,
@@ -20,4 +22,6 @@ export {
   CategoryTypes,
   TagTypes,
   TransactionTypes,
+  InvitationsTypes,
+  InvitationTypes,
 };

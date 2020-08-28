@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { TagForm, Tags } from 'containers';
+import { Invitations, InvitationForm } from 'containers';
 import { Header } from './styles';
-import {
-  IconButton,
-  Input,
-  Modal,
-  ScreenContainer,
-} from 'components';
+import { IconButton, Input, Modal, ScreenContainer } from 'components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
-import { TagActions } from 'actions';
+import { InvitationActions } from 'actions';
 import { SharedTypes } from 'utils';
 import { Permissions } from 'constants';
 
-function TagsScreen(props) {
-  const { navigation, addTag, isLoading, selectedAccount } = props;
+function InvitationsScreen(props) {
+  const { navigation, addInvitation, isLoading, selectedAccount } = props;
   const { permissions } = selectedAccount;
   const [addVisible, setAddVisible] = useState(false);
   const [filter, setFilter] = useState({});
@@ -23,7 +18,7 @@ function TagsScreen(props) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        if (permissions.includes(Permissions.TAGS.ADD)) {
+        if (permissions.includes(Permissions.INVITATIONS.ADD)) {
           return <IconButton onPress={() => setAddVisible(true)} icon="add" />;
         }
         return null;
@@ -38,7 +33,7 @@ function TagsScreen(props) {
   const onSearchChange = _.debounce(search, 500);
 
   const add = data => {
-    addTag(data, () => {
+    addInvitation(data, () => {
       setAddVisible(false);
     });
   };
@@ -54,12 +49,12 @@ function TagsScreen(props) {
           name="keyword"
         />
       </Header>
-      <Tags filter={filter} />
+      <Invitations filter={filter} />
       <Modal
-        title="Add tag"
+        title="Add invitation"
         visible={addVisible}
         onClose={() => setAddVisible(false)}>
-        <TagForm
+        <InvitationForm
           onCancel={() => setAddVisible(false)}
           isLoading={isLoading}
           onSubmit={add}
@@ -69,26 +64,26 @@ function TagsScreen(props) {
   );
 }
 
-TagsScreen.propTypes = {
+InvitationsScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  addTag: PropTypes.func.isRequired,
+  addInvitation: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   selectedAccount: SharedTypes.AccountType.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { tag, account } = state;
-  const { isLoading } = tag;
+  const { invitation, account } = state;
+  const { isLoading } = invitation;
   return { isLoading, selectedAccount: account.account };
 }
 
 const mapDispatchToProps = {
-  addTag: TagActions.addTag,
+  addInvitation: InvitationActions.addInvitation,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(TagsScreen);
+)(InvitationsScreen);

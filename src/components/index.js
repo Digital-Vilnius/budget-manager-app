@@ -25,6 +25,8 @@ import Badge from './Badge';
 import DatePicker from './DatePicker';
 import Checkbox from './Checkbox';
 import List from './List';
+import InvitationsItem from './InvitationsItem';
+import RoleSelect from './RoleSelect';
 
 export {
   Button,
@@ -54,4 +56,6 @@ export {
   DatePicker,
   Checkbox,
   List,
+  InvitationsItem,
+  RoleSelect,
 };

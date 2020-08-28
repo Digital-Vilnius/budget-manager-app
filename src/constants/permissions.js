@@ -24,4 +24,10 @@ const TRANSACTIONS = {
   ADD: 'AccountPermissions.Transactions.Add',
 };
 
-export { ACCOUNT_USERS, CATEGORIES, TAGS, TRANSACTIONS };
+const INVITATIONS = {
+  VIEW: 'AccountPermissions.Invitations.View',
+  DELETE: 'AccountPermissions.Invitations.Delete',
+  ADD: 'AccountPermissions.Invitations.Add',
+};
+
+export { ACCOUNT_USERS, CATEGORIES, TAGS, TRANSACTIONS, INVITATIONS };

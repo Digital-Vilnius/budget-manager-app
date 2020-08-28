@@ -11,6 +11,7 @@ import LanguageSettingsScreen from './LanguageSettings';
 import TagsScreen from './Tags';
 import EditUserDetailsScreen from './EditUserDetails';
 import AccountSelectScreen from './AccountSelect';
+import InvitationsScreen from './Invitations';
 
 export {
   TransactionsScreen,
@@ -26,4 +27,5 @@ export {
   TagsScreen,
   EditUserDetailsScreen,
   AccountSelectScreen,
+  InvitationsScreen,
 };

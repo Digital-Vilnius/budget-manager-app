@@ -9,6 +9,7 @@ import AccountUsersNavigator from './AccountUsersNavigator';
 import TagsNavigator from './TagsNavigator';
 import { DrawerContent } from 'containers';
 import { COLORS } from 'styles';
+import InvitationsNavigator from './InvitationsNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -36,8 +37,15 @@ function MainDrawerNavigator() {
         name={NAVIGATORS.CATEGORIES}
         component={CategoriesNavigator}
       />
+      <Drawer.Screen
+        name={NAVIGATORS.INVITATIONS}
+        component={InvitationsNavigator}
+      />
       <Drawer.Screen name={NAVIGATORS.TAGS} component={TagsNavigator} />
-      <Drawer.Screen name={NAVIGATORS.USERS} component={AccountUsersNavigator} />
+      <Drawer.Screen
+        name={NAVIGATORS.USERS}
+        component={AccountUsersNavigator}
+      />
       <Drawer.Screen name={NAVIGATORS.SETTINGS} component={SettingsNavigator} />
     </Drawer.Navigator>
   );

@@ -4,6 +4,7 @@ import MESSAGE_TYPES from './messageTypes';
 import ACCOUNT_TYPES from './accountTypes';
 import LIST from './list';
 import LOCALES from './locales';
+import ROLES from './roles';
 import * as Permissions from './permissions';
 
 export {
@@ -14,4 +15,5 @@ export {
   LIST,
   LOCALES,
   Permissions,
+  ROLES,
 };

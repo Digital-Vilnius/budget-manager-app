@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AccountUsers } from 'containers';
 import { Header } from './styles';
 import PropTypes from 'prop-types';
-import { Input, ScreenContainer, AccountUsersItem } from 'components';
+import { Input, ScreenContainer } from 'components';
 import * as _ from 'lodash';
 
 function AccountUsersScreen(props) {
@@ -25,12 +25,7 @@ function AccountUsersScreen(props) {
           name="keyword"
         />
       </Header>
-      <AccountUsers
-        renderItem={item => (
-          <AccountUsersItem key={item.id} accountUser={item} />
-        )}
-        filter={filter}
-      />
+      <AccountUsers filter={filter} />
     </ScreenContainer>
   );
 }

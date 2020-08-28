@@ -14,9 +14,9 @@ const AccountSelectContainer = styled.TouchableOpacity`
   height: 30px;
 `;
 
-const AccountTitle = styled(Typography.MediumText)`
+const AccountTitle = styled(Typography.BoldText)`
   color: ${COLORS.WHITE};
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 2px;
 `;
 

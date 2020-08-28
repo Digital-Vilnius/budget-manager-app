@@ -9,10 +9,10 @@ const DRAWER_HEADER_OPTIONS = ({ navigation }) => {
     },
     headerTitleAlign: 'center',
     headerLeftContainerStyle: {
-      paddingLeft: 15,
+      paddingLeft: 10,
     },
     headerRightContainerStyle: {
-      paddingRight: 15,
+      paddingRight: 10,
     },
     headerStyle: {
       height: 100,
