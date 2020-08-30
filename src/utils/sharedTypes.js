@@ -20,6 +20,9 @@ const AccountType = PropTypes.shape({
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   balance: PropTypes.number.isRequired,
+  expenses: PropTypes.number.isRequired,
+  incomes: PropTypes.number.isRequired,
+  plannedBudget: PropTypes.number,
   roles: PropTypes.arrayOf(PropTypes.string).isRequired,
   permissions: PropTypes.arrayOf(PropTypes.string).isRequired,
 });
@@ -28,7 +31,6 @@ const AccountsListItemType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  balance: PropTypes.number.isRequired,
   roles: PropTypes.arrayOf(PropTypes.string).isRequired,
 });
 
@@ -37,6 +39,7 @@ const CategoryType = PropTypes.shape({
   title: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
+  plannedBudget: PropTypes.number,
   createdBy: AccountUserType.isRequired,
   created: PropTypes.string.isRequired,
 });
@@ -45,6 +48,7 @@ const TagType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
+  plannedBudget: PropTypes.number,
   description: PropTypes.string.isRequired,
   createdBy: AccountUserType.isRequired,
   created: PropTypes.string.isRequired,

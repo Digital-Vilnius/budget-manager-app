@@ -1,20 +1,9 @@
 import React from 'react';
-import {
-  AmountText,
-  Header,
-  Content,
-  Container,
-  Description,
-  Details,
-  LeftSection,
-  RightSection,
-  Title,
-  Date,
-} from './styles';
+import { Container, Description, Title } from './styles';
 import { ViewPropTypes } from 'react-native';
 import { SharedTypes } from 'utils';
 import Avatar from '../Avatar';
-import Badge from '../Badge';
+import { Grid } from 'styles';
 
 function TransactionsItem(props) {
   const { transaction, style } = props;
@@ -23,22 +12,23 @@ function TransactionsItem(props) {
 
   return (
     <Container style={style}>
-      <Header>
-        <LeftSection>
+      <Grid.Row mb={15}>
+        <Grid.Col mr={10}>
           <Avatar placeholder={title.substring(0, 2)} size={40} />
-          <Details>
-            <Title>{title}</Title>
-            <Date>{category.title}</Date>
-          </Details>
-        </LeftSection>
-        <RightSection>
-          <Badge text={tag?.title || 'Other'} />
-        </RightSection>
-      </Header>
-      <Content>
-        <Description numberOfLines={2}>{description}</Description>
-        <AmountText>{`${amount.toFixed(2)} €`}</AmountText>
-      </Content>
+        </Grid.Col>
+        <Grid.Col>
+          <Title>{title}</Title>
+          <Description numberOfLines={1}>{description}</Description>
+        </Grid.Col>
+      </Grid.Row>
+      <Grid.Row spaceBetween>
+        <Grid.Col>
+          <Description>{amount}</Description>
+        </Grid.Col>
+        <Grid.Col>
+          <Description>{amount}</Description>
+        </Grid.Col>
+      </Grid.Row>
     </Container>
   );
 }

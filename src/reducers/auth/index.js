@@ -13,7 +13,6 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
     case AuthTypes.GET_LOGGED_USER_START:
     case AuthTypes.UPDATE_LOGGED_USER_START:
-    case AuthTypes.REGISTER_START:
     case AuthTypes.LOGIN_START: {
       return update(state, {
         isLoading: { $set: true },
@@ -23,8 +22,7 @@ export default (state = initialState, { type, payload }) => {
     case AuthTypes.LOGOUT:
     case AuthTypes.UPDATE_LOGGED_USER_ERROR:
     case AuthTypes.GET_LOGGED_USER_ERROR:
-    case AuthTypes.LOGIN_ERROR:
-    case AuthTypes.REGISTER_ERROR: {
+    case AuthTypes.LOGIN_ERROR: {
       return initialState;
     }
 
@@ -39,8 +37,7 @@ export default (state = initialState, { type, payload }) => {
       });
     }
 
-    case AuthTypes.UPDATE_LOGGED_USER:
-    case AuthTypes.REGISTER: {
+    case AuthTypes.UPDATE_LOGGED_USER: {
       return update(state, {
         isLoading: { $set: false },
       });

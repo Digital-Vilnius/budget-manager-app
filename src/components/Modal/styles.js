@@ -14,14 +14,10 @@ const Header = styled.View`
   justify-content: center;
 `;
 
-const Content = styled.View`
-  flex-grow: 1;
-`;
-
 const CloseIcon = styled(IconButton)`
   position: absolute;
   top: 20px;
   right: 15px;
 `;
 
-export { Container, Header, Content, CloseIcon };
+export { Container, Header, CloseIcon };

@@ -16,6 +16,7 @@ class TagForm extends Form {
     this.state = {
       fields: {
         title: { value: null, error: null, dirty: false },
+        plannedBudget: { value: null, error: null, dirty: false },
         description: { value: null, error: null, dirty: false },
       },
     };
@@ -34,12 +35,13 @@ class TagForm extends Form {
     }
   }
 
-  setForm({ title, description }) {
+  setForm({ title, description, plannedBudget }) {
     this.setState(
       state =>
         update(state, {
           fields: {
             title: { value: { $set: title } },
+            plannedBudget: { value: { $set: plannedBudget } },
             description: { value: { $set: description } },
           },
         }),
@@ -55,6 +57,7 @@ class TagForm extends Form {
       onSubmit({
         title: fields.title.value,
         description: fields.description.value,
+        plannedBudget: fields.plannedBudget.value,
       });
     }
   }
@@ -69,14 +72,21 @@ class TagForm extends Form {
           <Input
             value={fields.title.value}
             onChange={this.handleChange}
-            placeholder="Enter category title"
+            placeholder="Enter tag title"
             label="Title"
             name="title"
           />
           <Input
+            value={fields.plannedBudget.value}
+            onChange={this.handleChange}
+            placeholder="Enter tag planned budget"
+            label="Planned budget"
+            name="plannedBudget"
+          />
+          <Input
             value={fields.description.value}
             onChange={this.handleChange}
-            placeholder="Enter category description"
+            placeholder="Enter tag description"
             label="Description"
             name="description"
           />

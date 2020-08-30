@@ -1,33 +1,14 @@
 import styled from 'styled-components';
-import { COLORS, Typography } from 'styles';
+import { COLORS } from 'styles';
+import { KeyboardViewContainer } from 'components';
 
-const SafeAreaContainer = styled.SafeAreaView`
-  background-color: ${COLORS.LIGHT_GREY_2};
+const Content = styled.SafeAreaView`
+  flex: 1;
+  background-color: ${COLORS.WHITE};
 `;
 
-const Content = styled.View`
-  flex: 1;
-  background-color: ${COLORS.PRIMARY};
+const Wrapper = styled(KeyboardViewContainer)`
   justify-content: flex-end;
 `;
 
-const Footer = styled.TouchableOpacity`
-  height: 40px;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-  background-color: ${COLORS.LIGHT_GREY_2};
-`;
-
-const FooterText = styled(Typography.RegularText)`
-  font-size: 14px;
-  color: ${COLORS.GREY};
-  margin-right: 5px;
-`;
-
-const FooterMediumText = styled(Typography.MediumText)`
-  font-size: 14px;
-  color: ${COLORS.DARK_BLUE};
-`;
-
-export { Footer, FooterText, FooterMediumText, Content, SafeAreaContainer };
+export { Content, Wrapper };

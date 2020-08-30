@@ -5,10 +5,6 @@ class AuthService {
     return axiosInstance.post('/authentication/login', request);
   }
 
-  static async register(request) {
-    return axiosInstance.post('/authentication/register', request);
-  }
-
   static async getLoggedUser() {
     return axiosInstance.get('/authentication/logged-user');
   }

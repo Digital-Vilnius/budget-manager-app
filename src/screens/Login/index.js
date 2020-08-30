@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Content,
-  Footer,
-  FooterMediumText,
-  FooterText,
-  SafeAreaContainer,
-} from './styles';
+import { Content, Wrapper } from './styles';
 import { ScreenContainer } from 'components';
 import PropTypes from 'prop-types';
 import { SCREENS } from 'constants';
@@ -25,13 +19,9 @@ function LoginScreen(props) {
   return (
     <ScreenContainer>
       <Content>
-        <LoginForm onSubmit={submit} isLoading={isLoading} />
-        <SafeAreaContainer>
-          <Footer onPress={() => navigation.navigate(SCREENS.REGISTRATION)}>
-            <FooterText>Don't have an account?</FooterText>
-            <FooterMediumText>Sign up</FooterMediumText>
-          </Footer>
-        </SafeAreaContainer>
+        <Wrapper>
+          <LoginForm onSubmit={submit} isLoading={isLoading} />
+        </Wrapper>
       </Content>
     </ScreenContainer>
   );

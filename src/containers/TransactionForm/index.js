@@ -10,6 +10,9 @@ import CategorySelect from '../CategorySelect';
 import { BUTTONS, Grid } from 'styles';
 import TagSelect from '../TagSelect';
 import AccountUserSelect from '../AccountUserSelect';
+import { connect } from 'react-redux';
+import { SharedTypes } from 'utils';
+import {SPACE_TYPES} from "constants";
 
 class TransactionForm extends Form {
   constructor(props) {
@@ -71,18 +74,21 @@ class TransactionForm extends Form {
 
   render() {
     const { fields } = this.state;
-    const { style, isLoading, onCancel } = this.props;
+    const { style, isLoading, onCancel, account } = this.props;
+    const { type } = account;
 
     return (
       <Container style={style}>
         <Content>
-          <AccountUserSelect
-            value={fields.spentById.value}
-            onChange={this.handleChange}
-            placeholder="Select user"
-            label="Spent by"
-            name="spentById"
-          />
+          {SPACE_TYPES.MANAGER === type && (
+            <AccountUserSelect
+              value={fields.spentById.value}
+              onChange={this.handleChange}
+              placeholder="Select user"
+              label="Spent by"
+              name="spentById"
+            />
+          )}
           <CategorySelect
             value={fields.categoryId.value}
             onChange={this.handleChange}
@@ -161,7 +167,13 @@ TransactionForm.defaultProps = {
   style: {},
   isLoading: false,
   formData: null,
+  selectedAccount: SharedTypes.AccountType.isRequired,
   onCancel: () => {},
 };
 
-export default TransactionForm;
+function mapStateToProps(state) {
+  const { account } = state;
+  return { selectedAccount: account.account };
+}
+
+export default connect(mapStateToProps)(TransactionForm);

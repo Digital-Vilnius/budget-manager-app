@@ -59,7 +59,7 @@ class LoginForm extends Form {
             name="email"
           />
         </Grid.Row>
-        <Grid.Row>
+        <Grid.Row mb={10}>
           <Input
             secureTextEntry
             placeholder="Enter your password"

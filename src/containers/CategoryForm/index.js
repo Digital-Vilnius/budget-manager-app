@@ -16,6 +16,7 @@ class CategoryForm extends Form {
     this.state = {
       fields: {
         title: { value: null, error: null, dirty: false },
+        plannedBudget: { value: null, error: null, dirty: false },
         description: { value: null, error: null, dirty: false },
       },
     };
@@ -34,12 +35,13 @@ class CategoryForm extends Form {
     }
   }
 
-  setForm({ title, description }) {
+  setForm({ title, description, plannedBudget }) {
     this.setState(
       state =>
         update(state, {
           fields: {
             title: { value: { $set: title } },
+            plannedBudget: { value: { $set: plannedBudget } },
             description: { value: { $set: description } },
           },
         }),
@@ -54,6 +56,7 @@ class CategoryForm extends Form {
     if (this.validateForm()) {
       onSubmit({
         title: fields.title.value,
+        plannedBudget: fields.plannedBudget.value,
         description: fields.description.value,
       });
     }
@@ -72,6 +75,13 @@ class CategoryForm extends Form {
             placeholder="Enter category title"
             label="Title"
             name="title"
+          />
+          <Input
+            value={fields.plannedBudget.value}
+            onChange={this.handleChange}
+            placeholder="Enter category planned budget"
+            label="Planned budget"
+            name="plannedBudget"
           />
           <Input
             value={fields.description.value}

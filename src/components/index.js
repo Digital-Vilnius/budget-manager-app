@@ -27,6 +27,8 @@ import Checkbox from './Checkbox';
 import List from './List';
 import InvitationsItem from './InvitationsItem';
 import RoleSelect from './RoleSelect';
+import KeyboardViewContainer from './KeyboardViewContainer';
+import ProgressBar from './ProgressBar';
 
 export {
   Button,
@@ -58,4 +60,6 @@ export {
   List,
   InvitationsItem,
   RoleSelect,
+  KeyboardViewContainer,
+  ProgressBar,
 };

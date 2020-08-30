@@ -7,7 +7,7 @@ import * as PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';
 import { Grid } from 'styles';
 import { Validations } from 'utils';
-import { ACCOUNT_TYPES } from 'constants';
+import { SPACE_TYPES } from 'constants';
 
 class AccountTypeForm extends Form {
   validations = {
@@ -19,7 +19,7 @@ class AccountTypeForm extends Form {
 
     this.state = {
       fields: {
-        type: { value: ACCOUNT_TYPES.INDIVIDUAL, error: null, dirty: false },
+        type: { value: SPACE_TYPES.PLANNER, error: null, dirty: false },
       },
     };
 

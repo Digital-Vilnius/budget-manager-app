@@ -7,6 +7,7 @@ const Container = styled.View`
 const Content = styled.View`
   flex-grow: 1;
 `;
+
 const Footer = styled.View`
   padding: 10px;
 `;

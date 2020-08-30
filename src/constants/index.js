@@ -1,7 +1,7 @@
 import SCREENS from './screens';
 import NAVIGATORS from './navigators';
 import MESSAGE_TYPES from './messageTypes';
-import ACCOUNT_TYPES from './accountTypes';
+import SPACE_TYPES from './accountTypes';
 import LIST from './list';
 import LOCALES from './locales';
 import ROLES from './roles';
@@ -11,7 +11,7 @@ export {
   SCREENS,
   NAVIGATORS,
   MESSAGE_TYPES,
-  ACCOUNT_TYPES,
+  SPACE_TYPES,
   LIST,
   LOCALES,
   Permissions,

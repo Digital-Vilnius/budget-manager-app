@@ -1,7 +1,6 @@
-const ACCOUNT_TYPES = {
-  INDIVIDUAL: 'Individual',
-  FAMILY: 'Family',
-  BUSINESS: 'Business',
+const SPACE_TYPES = {
+  PLANNER: 'Planner',
+  MANAGER: 'Manager',
 };
 
-export default ACCOUNT_TYPES;
+export default SPACE_TYPES;

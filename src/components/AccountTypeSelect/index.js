@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Item, ItemText } from './styles';
 import { ViewPropTypes } from 'react-native';
-import { ACCOUNT_TYPES } from 'constants';
+import { SPACE_TYPES } from 'constants';
 import { Grid } from 'styles';
 
 function AccountTypeSelect(props) {
   const { style, onChange, value, name } = props;
-  const accountTypes = Object.keys(ACCOUNT_TYPES);
+  const accountTypes = Object.keys(SPACE_TYPES);
 
   return (
     <Container style={style}>
@@ -33,7 +33,7 @@ AccountTypeSelect.propTypes = {
 
 AccountTypeSelect.defaultProps = {
   style: {},
-  value: ACCOUNT_TYPES.INDIVIDUAL,
+  value: SPACE_TYPES.PLANNER,
 };
 
 export default AccountTypeSelect;

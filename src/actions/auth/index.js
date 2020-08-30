@@ -26,22 +26,6 @@ export function login(request, callback = null) {
   };
 }
 
-export function register(request, callback = null) {
-  return async dispatch => {
-    try {
-      dispatch({ type: AuthTypes.REGISTER_START });
-      await AuthService.register(request);
-      dispatch({ type: AuthTypes.REGISTER });
-      if (callback) {
-        callback();
-      }
-    } catch (exception) {
-      FlashMessagesService.showGenericError();
-      dispatch({ type: AuthTypes.REGISTER_ERROR });
-    }
-  };
-}
-
 export function getLoggedUser(callback = null) {
   return async dispatch => {
     try {

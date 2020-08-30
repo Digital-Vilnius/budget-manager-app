@@ -1,6 +1,5 @@
 import TransactionsScreen from './Transactions';
 import LoginScreen from './Login';
-import RegistrationScreen from './Registration';
 import DashboardScreen from './Dashboard';
 import LoadingScreen from './Loading';
 import SettingsScreen from './Settings';
@@ -16,7 +15,6 @@ import InvitationsScreen from './Invitations';
 export {
   TransactionsScreen,
   LoginScreen,
-  RegistrationScreen,
   DashboardScreen,
   LoadingScreen,
   SettingsScreen,

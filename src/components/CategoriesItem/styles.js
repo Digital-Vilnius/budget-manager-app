@@ -5,15 +5,12 @@ const Container = styled.TouchableOpacity`
   width: 100%;
   background-color: ${COLORS.WHITE};
   padding: 10px;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: space-between;
 `;
 
 const Title = styled(Typography.RegularText)`
   font-size: 14px;
   color: ${COLORS.DARK_BLUE};
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 `;
 
 const Description = styled(Typography.RegularText)`
@@ -21,36 +18,15 @@ const Description = styled(Typography.RegularText)`
   color: ${COLORS.GREY};
 `;
 
-const AmountText = styled(Typography.MediumText)`
-  font-size: 14px;
-  margin-bottom: 2px;
-  color: ${COLORS.DARK_BLUE};
-`;
-
-const LeftSection = styled.View`
+const Header = styled.View`
   flex-direction: row;
-  align-items: stretch;
+  flex: 1;
 `;
 
-const RightSection = styled.View`
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+const Footer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
 `;
 
-const Details = styled.View`
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin-left: 10px;
-`;
-
-export {
-  Title,
-  Container,
-  LeftSection,
-  RightSection,
-  Details,
-  Description,
-  AmountText,
-};
+export { Title, Container, Header, Description, Footer };
