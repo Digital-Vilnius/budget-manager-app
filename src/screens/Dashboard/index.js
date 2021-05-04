@@ -1,7 +1,7 @@
 import React from 'react';
 import { Balance, Container, Header, Label, Section, Subtitle } from './styles';
 import { Grid } from 'styles';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 

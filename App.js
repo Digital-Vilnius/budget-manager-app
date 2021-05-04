@@ -2,7 +2,7 @@ import React from 'react';
 import { useFonts } from 'expo-font';
 import { RootNavigator } from 'navigation';
 import FlashMessage from 'react-native-flash-message';
-import { persistor, store } from 'store';
+import { persistor, store } from 'core/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Text } from 'react-native';
@@ -25,7 +25,7 @@ function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={<Text>Loading</Text>} persistor={persistor}>
-        <StatusBar style="light" />
+        <StatusBar />
         <RootNavigator />
         <FlashMessage position="top" />
       </PersistGate>

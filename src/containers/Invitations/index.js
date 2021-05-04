@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 import { ViewPropTypes } from 'react-native';
 import { List, InvitationsItem } from 'components';
 import { connect } from 'react-redux';
-import { InvitationsActions } from 'actions';
+import { InvitationsActions } from 'core/actions';
 
 function Invitations(props) {
   const {

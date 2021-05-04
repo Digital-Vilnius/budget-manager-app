@@ -6,8 +6,8 @@ import { Container, Footer } from './styles';
 import * as PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';
 import { Grid } from 'styles';
-import { Validations } from 'utils';
-import { SPACE_TYPES } from 'constants';
+import { Validations } from 'core/utils';
+import { SPACE_TYPES } from 'core/constants';
 
 class AccountTypeForm extends Form {
   validations = {

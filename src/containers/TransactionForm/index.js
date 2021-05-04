@@ -11,8 +11,8 @@ import { BUTTONS, Grid } from 'styles';
 import TagSelect from '../TagSelect';
 import AccountUserSelect from '../AccountUserSelect';
 import { connect } from 'react-redux';
-import { SharedTypes } from 'utils';
-import {SPACE_TYPES} from "constants";
+import { SharedTypes } from 'core/utils';
+import {SPACE_TYPES} from "core/constants";
 
 class TransactionForm extends Form {
   constructor(props) {

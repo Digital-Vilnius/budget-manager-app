@@ -6,7 +6,7 @@ import Modal from '../Modal';
 import Separator from '../Separator';
 import OptionsItem from '../OptionsItem';
 import { Footer, ListFooter } from './styles';
-import { ROLES } from 'constants';
+import { ROLES } from 'core/constants';
 import Button from '../Button';
 
 const Roles = [ROLES.ADMIN, ROLES.USER, ROLES.GUEST];

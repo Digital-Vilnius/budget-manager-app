@@ -4,7 +4,7 @@ import { Button, Modal, OptionsItem } from 'components';
 import PropTypes from 'prop-types';
 import { BUTTONS, Form, Grid } from 'styles';
 import { ViewPropTypes } from 'react-native';
-import { CategoriesService } from 'services';
+import { CategoriesService } from 'core/services';
 import Categories from '../Categories';
 
 function CategorySelect(props) {

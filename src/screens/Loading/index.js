@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { NAVIGATORS, SCREENS } from 'constants';
-import { AuthActions } from 'actions';
+import { NAVIGATORS, SCREENS } from 'core/constants';
+import { AuthActions } from 'core/actions';
 import { ActivityIndicator } from 'react-native';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 
 function LoadingScreen(props) {
   const { navigation, isLogged, getLoggedUser, selectedAccount } = props;

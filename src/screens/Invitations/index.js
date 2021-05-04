@@ -5,9 +5,9 @@ import { IconButton, Input, Modal, ScreenContainer } from 'components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
-import { InvitationActions } from 'actions';
-import { SharedTypes } from 'utils';
-import { Permissions } from 'constants';
+import { InvitationActions } from 'core/actions';
+import { SharedTypes } from 'core/utils';
+import { Permissions } from 'core/constants';
 
 function InvitationsScreen(props) {
   const { navigation, addInvitation, isLoading, selectedAccount } = props;

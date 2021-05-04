@@ -4,7 +4,7 @@ import { Button, Modal, OptionsItem } from 'components';
 import PropTypes from 'prop-types';
 import {BUTTONS, Form, Grid} from 'styles';
 import { ViewPropTypes } from 'react-native';
-import { AccountUsersService } from 'services';
+import { AccountUsersService } from 'core/services';
 import AccountUsers from '../AccountUsers';
 
 function AccountUserSelect(props) {

@@ -4,7 +4,7 @@ import { Button, Modal, OptionsItem } from 'components';
 import PropTypes from 'prop-types';
 import {BUTTONS, Form, Grid} from 'styles';
 import { ViewPropTypes } from 'react-native';
-import { TagsService } from 'services';
+import { TagsService } from 'core/services';
 import Tags from '../Tags';
 
 function TagSelect(props) {

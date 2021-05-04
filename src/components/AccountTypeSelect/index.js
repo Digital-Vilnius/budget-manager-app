@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Item, ItemText } from './styles';
 import { ViewPropTypes } from 'react-native';
-import { SPACE_TYPES } from 'constants';
+import { SPACE_TYPES } from 'core/constants';
 import { Grid } from 'styles';
 
 function AccountTypeSelect(props) {

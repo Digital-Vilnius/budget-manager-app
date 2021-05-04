@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 import { ViewPropTypes } from 'react-native';
 import { CategoriesItem, List } from 'components';
 import { connect } from 'react-redux';
-import { CategoriesActions } from 'actions';
+import { CategoriesActions } from 'core/actions';
 
 function Categories(props) {
   const {

@@ -1,11 +1,11 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { NAVIGATORS, SCREENS } from 'constants';
+import { NAVIGATORS, SCREENS } from 'core/constants';
 import AuthNavigator from './AuthNavigator';
 import MainDrawerNavigator from './MainDrawerNavigator';
 import { LoadingScreen, AccountSelectScreen } from 'screens';
-import { NavigationService } from 'services';
+import { NavigationService } from 'core/services';
 
 const RootStack = createStackNavigator();
 

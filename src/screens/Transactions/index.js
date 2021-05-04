@@ -16,9 +16,9 @@ import PropTypes from 'prop-types';
 import { Grid } from 'styles';
 import { Header } from './styles';
 import * as _ from 'lodash';
-import { TransactionActions } from 'actions';
-import { SharedTypes } from 'utils';
-import { Permissions } from 'constants';
+import { TransactionActions } from 'core/actions';
+import { SharedTypes } from 'core/utils';
+import { Permissions } from 'core/constants';
 
 function TransactionsScreen(props) {
   const { navigation, isLoading, addTransaction, selectedAccount } = props;

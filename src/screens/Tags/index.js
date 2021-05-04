@@ -10,9 +10,9 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
-import { TagActions } from 'actions';
-import { SharedTypes } from 'utils';
-import { Permissions } from 'constants';
+import { TagActions } from 'core/actions';
+import { SharedTypes } from 'core/utils';
+import { Permissions } from 'core/constants';
 
 function TagsScreen(props) {
   const { navigation, addTag, isLoading, selectedAccount } = props;

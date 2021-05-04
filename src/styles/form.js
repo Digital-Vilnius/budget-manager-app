@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import COLORS from './colors';
-import * as Typography from './typography';
+import * as Typography from 'styles/typography/typography';
 
 const Container = styled.View`
   width: 100%;

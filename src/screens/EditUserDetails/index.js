@@ -3,7 +3,7 @@ import { Container } from './styles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { UserDetailsForm } from 'containers';
-import { AuthActions } from 'actions';
+import { AuthActions } from 'core/actions';
 
 function EditUserDetailsScreen(props) {
   const { navigation, formData, isLoading, updateLoggedUser } = props;

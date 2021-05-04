@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NAVIGATORS } from 'constants';
+import { NAVIGATORS } from 'core/constants';
 import React from 'react';
 import SettingsNavigator from './SettingsNavigator';
 import TransactionsNavigator from './TransactionsNavigator';

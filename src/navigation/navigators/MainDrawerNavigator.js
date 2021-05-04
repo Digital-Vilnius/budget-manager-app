@@ -1,7 +1,7 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
 import SettingsNavigator from './SettingsNavigator';
-import { NAVIGATORS } from 'constants';
+import { NAVIGATORS } from 'core/constants';
 import DashboardNavigator from './DashboardNavigator';
 import TransactionsNavigator from './TransactionsNavigator';
 import CategoriesNavigator from './CategoriesNavigator';

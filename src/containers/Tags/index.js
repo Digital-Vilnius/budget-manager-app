@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 import { ViewPropTypes } from 'react-native';
 import { List, TagsItem } from 'components';
 import { connect } from 'react-redux';
-import { TagsActions } from 'actions';
+import { TagsActions } from 'core/actions';
 
 function Tags(props) {
   const {

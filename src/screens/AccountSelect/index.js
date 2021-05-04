@@ -1,13 +1,13 @@
 import React from 'react';
 import { Container } from './styles';
 import PropTypes from 'prop-types';
-import { NAVIGATORS } from 'constants';
+import { NAVIGATORS } from 'core/constants';
 import { AccountSelect } from 'containers';
 import { Title } from 'components';
 import { COLORS, Grid } from 'styles';
-import { AuthActions } from 'actions';
+import { AuthActions } from 'core/actions';
 import { connect } from 'react-redux';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 
 function AccountSelectScreen(props) {
   const { navigation, selectedAccount, logout } = props;

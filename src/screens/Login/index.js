@@ -2,9 +2,9 @@ import React from 'react';
 import { Content, Wrapper } from './styles';
 import { ScreenContainer } from 'components';
 import PropTypes from 'prop-types';
-import { SCREENS } from 'constants';
+import { SCREENS } from 'core/constants';
 import { connect } from 'react-redux';
-import { AuthActions } from 'actions';
+import { AuthActions } from 'core/actions';
 import { LoginForm } from 'containers';
 
 function LoginScreen(props) {

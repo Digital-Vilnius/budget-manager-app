@@ -3,8 +3,8 @@ import { Container, Content, Footer } from './styles';
 import { Button, List, OptionsItem } from 'components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { SharedTypes } from 'utils';
-import { AccountsActions, AccountActions } from 'actions';
+import { SharedTypes } from 'core/utils';
+import { AccountsActions, AccountActions } from 'core/actions';
 import { BUTTONS, Grid } from 'styles';
 
 function AccountSelect(props) {

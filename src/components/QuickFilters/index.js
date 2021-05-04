@@ -3,7 +3,7 @@ import { Container, Content } from './styles';
 import { Grid } from 'styles';
 import PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 import QuickFilter from '../QuickFilter';
 
 const currentDate = new Date().toISOString().split('T')[0];

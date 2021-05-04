@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Footer, List, Separator } from './styles';
-import { Mapper, SharedTypes } from 'utils';
+import { Mapper, SharedTypes } from 'core/utils';
 import { ViewPropTypes } from 'react-native';
 import { SectionHeader, TransactionsItem } from 'components';
 import { connect } from 'react-redux';
-import { TransactionsActions } from 'actions';
-import { LIST } from 'constants';
+import { TransactionsActions } from 'core/actions';
+import { LIST } from 'core/constants';
 import autoBind from 'auto-bind';
 import _ from 'lodash';
 

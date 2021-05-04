@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Label } from './styles';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 import { ViewPropTypes } from 'react-native';
 
 function QuickFilter(props) {

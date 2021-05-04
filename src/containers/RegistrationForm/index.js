@@ -6,7 +6,7 @@ import { Container, Footer } from './styles';
 import * as PropTypes from 'prop-types';
 import { ViewPropTypes } from 'react-native';
 import { Grid } from 'styles';
-import { Validations } from 'utils';
+import { Validations } from 'core/utils';
 
 class RegistrationForm extends Form {
   validations = {

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 import { ViewPropTypes } from 'react-native';
 import { AccountUsersItem, List } from 'components';
 import { connect } from 'react-redux';
-import { AccountUsersActions } from 'actions';
+import { AccountUsersActions } from 'core/actions';
 
 function AccountUsers(props) {
   const {

@@ -20,9 +20,9 @@ import {
 } from './styles';
 import { COLORS, Grid } from 'styles';
 import { Avatar, Icon, IconButton, Modal } from 'components';
-import { NAVIGATORS, Permissions } from 'constants';
-import { SharedTypes } from 'utils';
-import { AuthActions } from 'actions';
+import { NAVIGATORS, Permissions } from 'core/constants';
+import { SharedTypes } from 'core/utils';
+import { AuthActions } from 'core/actions';
 import AccountSelect from '../AccountSelect';
 
 function DrawerContent(props) {

@@ -8,7 +8,7 @@ import {
   Title,
 } from './styles';
 import { ViewPropTypes } from 'react-native';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 import Avatar from '../Avatar';
 import PropTypes from 'prop-types';
 import Badge from '../Badge';

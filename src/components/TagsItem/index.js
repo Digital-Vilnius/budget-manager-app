@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Description, Title } from './styles';
 import { ViewPropTypes } from 'react-native';
-import { SharedTypes } from 'utils';
+import { SharedTypes } from 'core/utils';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import { Grid } from 'styles';

@@ -9,10 +9,10 @@ import {
 import { Avatar, MenuItem, Separator } from 'components';
 import { COLORS, Grid } from 'styles';
 import { connect } from 'react-redux';
-import { AuthActions as actions } from 'actions';
+import { AuthActions as actions } from 'core/actions';
 import PropTypes from 'prop-types';
-import { SCREENS } from 'constants';
-import { SharedTypes } from 'utils';
+import { SCREENS } from 'core/constants';
+import { SharedTypes } from 'core/utils';
 
 function SettingsScreen(props) {
   const { logout, user, navigation } = props;

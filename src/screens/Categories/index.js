@@ -4,10 +4,10 @@ import { Header } from './styles';
 import { IconButton, Input, Modal, ScreenContainer } from 'components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { CategoryActions } from 'actions';
+import { CategoryActions } from 'core/actions';
 import * as _ from 'lodash';
-import { SharedTypes } from 'utils';
-import { Permissions } from 'constants';
+import { SharedTypes } from 'core/utils';
+import { Permissions } from 'core/constants';
 
 function CategoriesScreen(props) {
   const { navigation, addCategory, isLoading, selectedAccount } = props;
